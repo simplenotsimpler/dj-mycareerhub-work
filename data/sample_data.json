@@ -1,0 +1,374 @@
+[
+  {
+    "model": "core.address",
+    "pk": 1,
+    "fields": {
+      "address_line_1": "1007 Mountain Drive",
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07001"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 2,
+    "fields": {
+      "address_line_1": "123 Tech Ave",
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07002"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 3,
+    "fields": {
+      "address_line_1": "500 University Way",
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07003"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 4,
+    "fields": {
+      "address_line_1": "1 Foundation Plaza",
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07004"
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 1,
+    "fields": {
+      "name": "Wayne Enterprises",
+      "short_name": "Wayne Ent.",
+      "website": "https://www.wayneenterprises.com",
+      "address": 1
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 2,
+    "fields": {
+      "name": "Fox Technologies",
+      "short_name": "Fox Tech",
+      "website": "https://www.foxtech.com",
+      "address": 2
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 3,
+    "fields": {
+      "name": "Gotham University",
+      "short_name": "Gotham U",
+      "website": "https://www.gothamu.edu",
+      "address": 3
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 4,
+    "fields": {
+      "name": "Wayne Foundation",
+      "short_name": "WF",
+      "website": "https://www.waynefoundation.org",
+      "address": 4
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 1,
+    "fields": {
+      "position": "Chief Executive Officer",
+      "summary": "Lead Wayne Enterprises to global success across multiple industries.",
+      "org": 1,
+      "client": null,
+      "address": 1,
+      "employment_type": 1,
+      "start_date": "2010-01-01",
+      "end_date": null,
+      "is_current_position": true,
+      "salary_from": "0.00",
+      "salary_to": "0.00",
+      "salary_per": 6,
+      "location_type": 3,
+      "reason_for_leaving": null,
+      "okay_to_contact": false
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 2,
+    "fields": {
+      "position": "Strategic Advisor",
+      "summary": "Provided innovation and leadership guidance to Fox Technologies.",
+      "org": 2,
+      "client": null,
+      "address": 2,
+      "employment_type": 5,
+      "start_date": "2005-01-01",
+      "end_date": "2009-12-31",
+      "is_current_position": false,
+      "salary_from": "0.00",
+      "salary_to": "0.00",
+      "salary_per": 6,
+      "location_type": 1,
+      "reason_for_leaving": "Transitioned to CEO at Wayne Enterprises",
+      "okay_to_contact": true
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 3,
+    "fields": {
+      "position": "Philanthropy Chair",
+      "summary": "Led strategic community investments through the Wayne Foundation.",
+      "org": 4,
+      "client": null,
+      "address": 4,
+      "employment_type": 1,
+      "start_date": "2000-01-01",
+      "end_date": "2004-12-31",
+      "is_current_position": false,
+      "salary_from": "0.00",
+      "salary_to": "0.00",
+      "salary_per": 6,
+      "location_type": 1,
+      "reason_for_leaving": "Focused on enterprise leadership",
+      "okay_to_contact": true
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 1,
+    "fields": {
+      "institution": 3,
+      "address": 3,
+      "degree": "Bachelor of Science",
+      "field_of_study": "Business Administration",
+      "concentration": "Finance",
+      "start_date": "1995-08-15",
+      "end_date": "1999-05-15",
+      "note": "Graduated with honors.",
+      "score": 3.9,
+      "scale": 4.0,
+      "courses_only": false
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 2,
+    "fields": {
+      "institution": 3,
+      "address": 3,
+      "degree": "Master of Business Administration",
+      "field_of_study": "Corporate Strategy",
+      "concentration": null,
+      "start_date": "2000-08-15",
+      "end_date": "2002-05-15",
+      "note": "",
+      "score": 4.0,
+      "scale": 4.0,
+      "courses_only": false
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 3,
+    "fields": {
+      "institution": 3,
+      "address": 3,
+      "degree": "Executive Training Certificate",
+      "field_of_study": "Leadership Development",
+      "concentration": null,
+      "start_date": "2003-01-10",
+      "end_date": "2003-12-20",
+      "note": "One-year executive development program",
+      "score": null,
+      "scale": 4.0,
+      "courses_only": false
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 1,
+    "fields": {
+      "full_name": "Alfred Pennyworth",
+      "position": "Butler",
+      "org": 1,
+      "phone": "555-0001",
+      "fax": null,
+      "email": "alfred@wayneenterprises.com",
+      "linkedin": null,
+      "known_since": "1980-01-01",
+      "referral_org": 1,
+      "relationship": 1,
+      "current_reference": true,
+      "background_check": true,
+      "notes": "Trusted lifelong assistant and confidant."
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 2,
+    "fields": {
+      "full_name": "Dick Grayson",
+      "position": "Security Consultant",
+      "org": 1,
+      "phone": "555-0002",
+      "fax": null,
+      "email": "dick@wayneenterprises.com",
+      "linkedin": null,
+      "known_since": "2000-01-01",
+      "referral_org": 1,
+      "relationship": 3,
+      "current_reference": false,
+      "background_check": true,
+      "notes": "Former ward and current associate."
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 3,
+    "fields": {
+      "full_name": "Lucius Fox",
+      "position": "President, Fox Technologies",
+      "org": 2,
+      "phone": "555-0003",
+      "fax": null,
+      "email": "lucius@foxtech.com",
+      "linkedin": null,
+      "known_since": "1995-01-01",
+      "referral_org": 2,
+      "relationship": 2,
+      "current_reference": true,
+      "background_check": true,
+      "notes": "Former supervisor and trusted executive."
+    }
+  },
+  {
+    "model": "core.socialprofile",
+    "pk": 1,
+    "fields": {
+      "basics": 1,
+      "network": "LinkedIn",
+      "username": "brucewayne",
+      "url": "https://linkedin.com/in/brucewayne"
+    }
+  },
+  {
+    "model": "core.basics",
+    "pk": 1,
+    "fields": {
+      "full_name": "Bruce Wayne",
+      "display_name": "Bruce Wayne",
+      "basics_website": "https://www.wayneenterprises.com",
+      "basics_email": "bruce@wayneenterprises.com",
+      "address": 1,
+      "basics_phone": "555-1234"
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Leadership",
+      "icon": "fa-solid fa-user-tie"
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 2,
+    "fields": {
+      "name": "Technology",
+      "icon": "fa-solid fa-microchip"
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 3,
+    "fields": {
+      "name": "Philanthropy",
+      "icon": "fa-solid fa-hand-holding-heart"
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 1,
+    "fields": {
+      "name": "Strategic Planning",
+      "skill": 1
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 2,
+    "fields": {
+      "name": "Executive Leadership",
+      "skill": 1
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 3,
+    "fields": {
+      "name": "Technology Strategy",
+      "skill": 2
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 4,
+    "fields": {
+      "name": "Innovation Management",
+      "skill": 2
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 5,
+    "fields": {
+      "name": "Social Impact",
+      "skill": 3
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 6,
+    "fields": {
+      "name": "Grantmaking",
+      "skill": 3
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 1,
+    "fields": {
+      "highlight_text": "Led global expansion and acquisition strategy.",
+      "job": 1,
+      "is_duty": true
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 2,
+    "fields": {
+      "highlight_text": "Introduced enterprise-wide innovation program.",
+      "job": 2,
+      "is_duty": true
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 3,
+    "fields": {
+      "highlight_text": "Oversaw distribution of over $100M in charitable funds.",
+      "job": 3,
+      "is_duty": true
+    }
+  }
+]

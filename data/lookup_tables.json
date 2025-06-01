@@ -1,0 +1,92 @@
+[
+  { "model": "core.salarytype", "pk": 1, "fields": { "name": "Hour" } },
+  { "model": "core.salarytype", "pk": 2, "fields": { "name": "Day" } },
+  { "model": "core.salarytype", "pk": 3, "fields": { "name": "Week" } },
+  { "model": "core.salarytype", "pk": 4, "fields": { "name": "Month" } },
+  { "model": "core.salarytype", "pk": 5, "fields": { "name": "Quarter" } },
+  { "model": "core.salarytype", "pk": 6, "fields": { "name": "Year" } },
+  {
+    "model": "core.employmenttype",
+    "pk": 1,
+    "fields": { "emp_type": "Full-Time" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 2,
+    "fields": { "emp_type": "Part-Time" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 3,
+    "fields": { "emp_type": "Self-Employed" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 4,
+    "fields": { "emp_type": "Freelance" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 5,
+    "fields": { "emp_type": "Contract" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 6,
+    "fields": { "emp_type": "Internship" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 7,
+    "fields": { "emp_type": "Apprenticeship" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 8,
+    "fields": { "emp_type": "Seasonal" }
+  },
+  {
+    "model": "core.employmenttype",
+    "pk": 9,
+    "fields": { "emp_type": "Foreign Remote" }
+  },
+
+  {
+    "model": "core.contactrelationship",
+    "pk": 1,
+    "fields": { "description": "Personal" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 2,
+    "fields": { "description": "Supervisor/Manager" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 3,
+    "fields": { "description": "Peer/Co-Worker" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 4,
+    "fields": { "description": "Client" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 5,
+    "fields": { "description": "Recruiter" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 6,
+    "fields": { "description": "Other" }
+  },
+  {
+    "model": "core.contactrelationship",
+    "pk": 7,
+    "fields": { "description": "Employment Verification" }
+  },
+  { "model": "core.locationtype", "pk": 1, "fields": { "name": "Onsite" } },
+  { "model": "core.locationtype", "pk": 2, "fields": { "name": "Remote" } },
+  { "model": "core.locationtype", "pk": 3, "fields": { "name": "Hybrid" } }
+]
