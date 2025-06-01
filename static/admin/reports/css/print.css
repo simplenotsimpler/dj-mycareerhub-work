@@ -1,0 +1,77 @@
+/* NOTE: can not turn off the browser header & footer - that is up to user */
+
+@media only print {
+  /* All your print styles go here */
+
+  body {
+    color: black !important;
+  }
+
+  #header,
+  #footer,
+  #nav,
+  .breadcrumbs,
+  /* hide paginator all media */
+  /* .paginator, */
+  #print-action {
+    display: none !important;
+  }
+
+  a {
+    color: inherit !important;
+  }
+
+  /* leave background on th since adding bottom border not working */
+  /* th, */
+  tr {
+    background: none !important;
+  }
+
+  th {
+    /* have to explicitly override this */
+    color: black !important;
+    font-weight: 600 !important;
+  }
+  /**
+ * =============================================
+ * =        GENERAL PRINT STYLES               =
+ * =============================================
+ *
+ */
+
+  /* 
+    Force landscape
+    https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css
+ */
+  @page {
+    size: landscape letter;
+  }
+
+  /* Defining all page breaks */
+  a,
+  blockquote,
+  q,
+  table,
+  pre,
+  ul,
+  ol,
+  dl,
+  p,
+  p > span,
+  li,
+  section {
+    page-break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  img,
+  figure {
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+}

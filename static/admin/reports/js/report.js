@@ -1,0 +1,25 @@
+// https://stackoverflow.com/questions/20101409/how-can-i-insert-a-print-button-that-prints-a-form-in-a-webpage
+/* alignment:
+    https://stackoverflow.com/questions/6632340/place-a-button-right-aligned
+
+    answered Apr 10, 2020 at 10:11
+    phan kosal's user avatar
+    phan kosal
+*/
+
+buildPrint = () => {
+  document.querySelector("#content h1").insertAdjacentHTML(
+    "afterend",
+    `
+        <div id="print-action" style = "display: flex; justify-content:space-between; align-items: center; margin-bottom: 1.5rem">
+          <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
+          <div><input type="button" value="Print" onClick="window.print()"></input></div>
+        </div>
+      `
+  );
+};
+
+// have to wait until DOM loads
+document.addEventListener("DOMContentLoaded", () => {
+  buildPrint();
+});
