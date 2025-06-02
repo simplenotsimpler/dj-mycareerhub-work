@@ -12,13 +12,6 @@ class ReportsAdmin(admin.ModelAdmin):
     # NOTE: not sure if I want this removed when I'm listing things like Education History, etc.
     list_display_links = None
 
-    class Media:
-        css = {
-            "all": ["admin/reports/css/main.css"],
-            "print": ["admin/reports/css/print.css"],
-        }
-        js = ['admin/reports/js/report.js',]
-
     def changelist_view(self, request, extra_context=None):
         # this works even though looks like IDE is not autosuggesting!!
         extra_context = {'title': self.model._meta.verbose_name}
@@ -42,21 +35,26 @@ class EducHistoryAdmin(ReportsAdmin):
 
 @admin.register(WorkHistory)
 class WorkHistoryAdmin(ReportsAdmin):
+
   # TODO maybe skip present since have is current position?
     list_display = ['position', 'org', 'job_address',
-                    'start_date', 'end_date_or_present', 'is_current_position', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
+                    'start_date_formatted', 'end_date_or_present', 'is_current_position', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.prefetch_related("job_highlights")
 
 
 class ContactListDisplayMixin:
     list_display = ['full_name', 'phone', 'email',
                     'position', 'org', 'relationship', 'known_since', 'how_long_known']
 
-
+#TODO: changelist template
 @admin.register(ContactReferences)
 class ContactReferencesAdmin(ContactListDisplayMixin, ReportsAdmin):
     pass
 
-
+#TODO: changelist template
 @admin.register(ContactBackgroundCheck)
 class ContactBackgroundCheckAdmin(ContactListDisplayMixin, ReportsAdmin):
     pass

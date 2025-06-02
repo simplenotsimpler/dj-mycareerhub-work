@@ -1,77 +1,88 @@
-/* NOTE: can not turn off the browser header & footer - that is up to user */
-
-@media only print {
-  /* All your print styles go here */
-
-  body {
-    color: black !important;
+@media print {
+  @page {
+    margin: 0.5in;
   }
 
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  body {
+    background: white;
+    color: black;
+    font-size: 11pt;
+  }
+
+  /* Hide Django admin UI elements */
   #header,
+  #user-tools,
+  #nav-sidebar,
   #footer,
-  #nav,
+  nav,
   .breadcrumbs,
-  /* hide paginator all media */
-  /* .paginator, */
+  .object-tools,
+  .paginator,
+  .actions,
+  .module caption,
+  .module h2,
+  .module table,
   #print-action {
     display: none !important;
   }
 
-  a {
-    color: inherit !important;
+  .report-wrapper {
+    margin: 0;
+    padding: 0;
   }
 
-  /* leave background on th since adding bottom border not working */
-  /* th, */
-  tr {
-    background: none !important;
+  .report-title {
+    font-size: 16pt;
+    margin: 0 0 0.5rem;
   }
 
-  th {
-    /* have to explicitly override this */
-    color: black !important;
-    font-weight: 600 !important;
-  }
-  /**
- * =============================================
- * =        GENERAL PRINT STYLES               =
- * =============================================
- *
- */
-
-  /* 
-    Force landscape
-    https://stackoverflow.com/questions/39356258/force-landscape-orientation-in-css
- */
-  @page {
-    size: landscape letter;
-  }
-
-  /* Defining all page breaks */
-  a,
-  blockquote,
-  q,
-  table,
-  pre,
-  ul,
-  ol,
-  dl,
-  p,
-  p > span,
-  li,
-  section {
+  .report-entry {
+    margin: 0 0 0.75rem;
     page-break-inside: avoid;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  img,
-  figure {
-    page-break-after: avoid;
+  #content {
+    margin: 0;
+    width: 100%;
+  }
+
+  .application-style {
+    margin-bottom: 0 !important;
+  }
+
+  .job-entry {
     page-break-inside: avoid;
+    break-inside: avoid;
+    break-after: avoid-page;
+    border: none !important;
+  }
+
+  .job-entry:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .org-line {
+    display: table !important;
+    width: 100%;
+    margin: 0;
+    font-size: 0.95rem;
+    table-layout: fixed;
+  }
+
+  .org-line > span {
+    display: table-cell;
+    vertical-align: baseline;
+  }
+
+  .okay-to-contact {
+    text-align: right;
+    white-space: nowrap;
   }
 }

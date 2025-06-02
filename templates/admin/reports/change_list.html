@@ -1,0 +1,29 @@
+{% extends "admin/change_list.html" %}
+{% load static %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin/reports/css/report.css' %}">
+  <link rel="stylesheet" href="{% static 'admin/reports/css/print.css' %}" media="print">
+{% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script src="{% static 'admin/reports/js/report.js' %}"></script>
+{% endblock %}
+
+{% block content_title %}
+  {# Suppress the default h1 from Django admin #}
+{% endblock %}
+
+{% block content %}
+  <div class="report-wrapper">
+    <h1 class="report-title">{{ title }}</h1>
+
+    {% block report_content %}
+      <!-- To be overridden by each proxy model -->
+    {% endblock %}
+  </div>
+{% endblock %}
+
+

@@ -1,6 +1,7 @@
 from datetime import date
 from django.db import models
 # from dateutil import relativedelta
+from django.utils.dateformat import format
 from dateutil.relativedelta import relativedelta
 
 
@@ -79,10 +80,16 @@ class WorkHistory(Job):
         return f"{self.position} at {self.org}"
 
     @property
+    def start_date_formatted(self):
+        if self.start_date:
+            return format(self.start_date, "M Y")
+        return ""
+    
+    @property
     def end_date_or_present(self):
-        return "Present" if not self.end_date else self.end_date
-        # return f"{self.start_date} - {end_date_or_present}"
-        # return f"{self.start_date.strftime("%b %Y")} - {self.end_date.strftime("%b %Y")}"
+        if self.end_date:
+            return format(self.end_date, "M Y")
+        return "Present"    
 
     @property
     def job_address(self):

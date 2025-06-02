@@ -1,0 +1,48 @@
+{% extends "admin/reports/change_list.html" %}
+
+{% block report_content %}
+<section class="application-style">
+  {% for obj in cl.result_list %}
+    <article class="job-entry">
+      <header>
+        <h1>{{ obj.position }}</h1>
+        <p class="org-line">
+          <span><strong>{{ obj.org }}</strong></span>
+          <span class="contact-status">Okay to Contact: <strong>{{ obj.okay_to_contact|yesno:"Yes,No" }}</strong></span>
+        </p>
+      </header>
+      <dl>
+        <dt>Employment Type</dt>
+        <dd>{{ obj.employment_type }}</dd>
+
+        <dt>Dates of Employment</dt>
+        <dd>{{ obj.start_date_formatted }} – {{ obj.end_date_or_present }}</dd>
+
+        <dt>Salary ({{ obj.salary_per }})</dt>
+        <dd>{{ obj.salary_from }} – {{ obj.salary_to }}</dd>
+
+        <dt>Reason for Leaving</dt>
+        <dd>{{ obj.reason_for_leaving }}</dd>
+
+        <dt>Address</dt>
+        <dd>
+          <address>
+            {% if obj.address.address_line_1 %}{{ obj.address.address_line_1 }}<br>{% endif %}
+            {% if obj.address.address_line_2 %}{{ obj.address.address_line_2 }}<br>{% endif %}
+            {% if obj.address.address_line_3 %}{{ obj.address.address_line_3 }}<br>{% endif %}
+            {% if obj.address.city or obj.address.region or obj.address.postal_code %}
+              {{ obj.address.city }}{% if obj.address.city and obj.address.region %}, {% endif %}{{ obj.address.region }} {{ obj.address.postal_code }}
+            {% endif %}
+          </address>
+        </dd>
+        <dt>Highlights</dt>
+        {% for highlight in obj.job_highlights.all %}
+          <dd>{{ highlight.highlight_text }}</dd>
+        {% endfor %}      
+      </dl>
+    </article>
+  {% empty %}
+    <p>No records available.</p>
+  {% endfor %}
+</section>
+{% endblock %}

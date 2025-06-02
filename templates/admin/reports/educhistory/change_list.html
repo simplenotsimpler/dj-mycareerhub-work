@@ -1,0 +1,20 @@
+{% extends "admin/reports/change_list.html" %}
+
+{% block report_content %}
+{% comment %} Semantic HTML: Debatable if should be a section or use a nested list{% endcomment %}
+
+  <section>
+    {% for obj in cl.result_list %}
+        <ul class="report-entry">
+          <li><strong>{{ obj.degree }}, {{ obj.field_of_study }}</strong></li>
+          <li>{{ obj.institution }}</li>
+          <li>{{obj.location}}</li>
+          <li>{{obj.start_to_end}}</li>
+          <li>Grade: {{obj.gpa}}</li>          
+          {% if obj.note %}
+            <li>Note: {{obj.note}}</li>
+          {% endif %}
+        </ul>
+    {% endfor %}
+  </section>
+{% endblock %}
