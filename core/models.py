@@ -140,7 +140,7 @@ class EmploymentType(TitleCaseFieldsMixin):
 class Highlight(models.Model):
     highlight_text = models.TextField(blank=True, null=True, max_length=125)
     job = models.ForeignKey(
-        "Job", on_delete=models.SET_NULL, blank=True, null=True)
+        "Job", on_delete=models.SET_NULL, blank=True, null=True, related_name="job_highlights")
     is_duty = models.BooleanField(verbose_name="Is duty?", default=False)
 
     class Meta:
