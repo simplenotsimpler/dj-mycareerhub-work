@@ -3,28 +3,10 @@ from django.db import models
 # from dateutil import relativedelta
 from django.utils.dateformat import format
 from dateutil.relativedelta import relativedelta
+from django.db.models import Q
 
 
 from core.models import Contact, Education, Job
-
-
-class ContactPropertiesMixin:
-    @property
-    def how_long_known(self):
-        duration = relativedelta(date.today(), self.known_since)
-        # {duration.years} Years {duration.months} months {duration.days} days
-        output = f'{duration.years} Years'
-        return output
-
-    # line breaks not working in f string
-    # maybe use later
-    @property
-    def known_and_duration(self):
-        output = f"""
-          {self.known_since.strftime("%b %Y")}
-          {self.how_long_known}
-        """
-        return output
 
 # https://micropyramid.com/blog/overriding-django-model-behaviour-with-proxy-model/
 # https://www.youtube.com/watch?v=KF2p-LQjZZ4
@@ -84,12 +66,12 @@ class WorkHistory(Job):
         if self.start_date:
             return format(self.start_date, "M Y")
         return ""
-    
+
     @property
     def end_date_or_present(self):
         if self.end_date:
             return format(self.end_date, "M Y")
-        return "Present"    
+        return "Present"
 
     @property
     def job_address(self):
@@ -102,27 +84,22 @@ class WorkHistory(Job):
         return output
 
 
-class ContactReferences(ContactPropertiesMixin, Contact):
+class ContactList(Contact):
     class Meta:
         proxy = True
-        verbose_name = "Contact References"
-        verbose_name_plural = "Contact References"
+        verbose_name = "Contact List"
+        verbose_name_plural = "Contact List"
 
-    class ContactReferencesReportManager(models.Manager):
+    class ContactListReportManager(models.Manager):
         def get_queryset(self) -> models.QuerySet:
-            return super().get_queryset().filter(current_reference=True)
+            return super().get_queryset().filter(Q(current_reference=True)|Q(background_check=True))
+        
+    objects=ContactListReportManager()
+    @property
+    def how_long_known(self):
+        duration = relativedelta(date.today(), self.known_since)
+        # {duration.years} Years {duration.months} months {duration.days} days
+        output = f'{duration.years} Years'
+        return output    
 
-    objects = ContactReferencesReportManager()
 
-
-class ContactBackgroundCheck(ContactPropertiesMixin, Contact):
-    class Meta:
-        proxy = True
-        verbose_name = "Contact Background Check"
-        verbose_name_plural = "Contact Background Check"
-
-    class ContactReferencesReportManager(models.Manager):
-        def get_queryset(self) -> models.QuerySet:
-            return super().get_queryset().filter(current_reference=True, background_check=True)
-
-    objects = ContactReferencesReportManager()

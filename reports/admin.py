@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from reports.models import ContactBackgroundCheck, ContactReferences, EducHistory, WorkHistory
+from reports.models import ContactList, EducHistory, WorkHistory
 
 # https://forum.djangoproject.com/t/creating-a-base-modeladmin-for-a-project/2944
 
@@ -34,7 +34,7 @@ class EducHistoryAdmin(ReportsAdmin):
 
 @admin.register(WorkHistory)
 class WorkHistoryAdmin(ReportsAdmin):
-
+    # TODO add okay to contact so parallel with report
     list_display = ['position', 'org', 'job_address',
                     'start_date_formatted', 'end_date_or_present', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
 
@@ -43,20 +43,8 @@ class WorkHistoryAdmin(ReportsAdmin):
         return qs.prefetch_related("job_highlights")
 
 
-class ContactListDisplayMixin:
+@admin.register(ContactList)
+class ContactListAdmin(ReportsAdmin):
+    # TODO: changelist template
     list_display = ['full_name', 'phone', 'email',
                     'position', 'org', 'relationship', 'known_since', 'how_long_known']
-
-# TODO: changelist template
-
-
-@admin.register(ContactReferences)
-class ContactReferencesAdmin(ContactListDisplayMixin, ReportsAdmin):
-    pass
-
-# TODO: changelist template
-
-
-@admin.register(ContactBackgroundCheck)
-class ContactBackgroundCheckAdmin(ContactListDisplayMixin, ReportsAdmin):
-    pass
