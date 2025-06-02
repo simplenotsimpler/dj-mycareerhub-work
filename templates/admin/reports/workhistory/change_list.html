@@ -8,6 +8,7 @@
         <h1>{{ obj.position }}</h1>
         <p class="org-line">
           <span><strong>{{ obj.org }}</strong></span>
+          {% comment %} TODO: fix strong on Okay to contact {% endcomment %}
           <span class="contact-status">Okay to Contact: <strong>{{ obj.okay_to_contact|yesno:"Yes,No" }}</strong></span>
         </p>
       </header>

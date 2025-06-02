@@ -30,6 +30,7 @@ address {
   font-style: normal;
 }
 
+/* TODO: rename styles to be more generic */
 .application-style {
   display: flex;
   flex-direction: column;

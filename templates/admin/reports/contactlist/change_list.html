@@ -1,0 +1,32 @@
+{% extends "admin/reports/change_list.html" %}
+
+{% block report_content %}
+<section class="application-style">
+  {% for obj in cl.result_list %}
+    <article class="job-entry">
+      <header>
+        <h1>{{ obj.full_name }}</h1>
+        <div>Current Reference:  <strong>{{ obj.current_reference|yesno:"Yes,No" }}</strong></div>
+        <div>Background Check:  <strong>{{ obj.background_check|yesno:"Yes,No" }}</strong></div> 
+      </header>
+      <dl>
+        <dt>Phone</dt>
+        <dd>{{ obj.phone }}</dd>        
+        <dt>Email</dt>
+        <dd>{{ obj.email }}</dd>
+        <dt>Position</dt>
+        <dd>{{obj.position}}</dt>
+        <dt>Relationship</dt>
+        <dd>{{obj.relationship}}</dd>
+        <dt>Known Since</dt>
+        <dd>{{ obj.known_since }}</dd>
+        <dt>How long known</dt>
+        <dd>{{ obj.how_long_known}}</dd>
+      
+      </dl>
+    </article>
+  {% empty %}
+    <p>No records available.</p>
+  {% endfor %}
+</section>
+{% endblock %}

@@ -46,5 +46,7 @@ class WorkHistoryAdmin(ReportsAdmin):
 @admin.register(ContactList)
 class ContactListAdmin(ReportsAdmin):
     # TODO: changelist template
-    list_display = ['full_name', 'phone', 'email',
-                    'position', 'org', 'relationship', 'known_since', 'how_long_known']
+    list_display = [
+        'full_name', 'current_reference', 'background_check', 'phone',
+        'email', 'position', 'org', 'relationship', 'known_since', 'how_long_known'
+    ]
