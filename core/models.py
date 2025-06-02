@@ -66,7 +66,6 @@ class Contact(models.Model):
     linkedin = models.CharField(
         blank=True, null=True, verbose_name="LinkedIn", max_length=255)
     known_since = models.DateField(default=None, blank=True, null=True)
-    # TODO: how determine if current or former supervisor, former coworker, etc.? maybe boolean - relationship current? or is_former? (default former)
     referral_org = models.ForeignKey(
         "Organization",
         on_delete=models.SET_NULL,
@@ -77,6 +76,8 @@ class Contact(models.Model):
     )
     relationship = models.ForeignKey(
         "ContactRelationship", on_delete=models.SET_NULL, blank=True, null=True)
+    relationship_is_former=models.BooleanField(
+        verbose_name="Former relationship?", default=False)
     current_reference = models.BooleanField(
         verbose_name="Current reference?", default=False)
     background_check = models.BooleanField(
