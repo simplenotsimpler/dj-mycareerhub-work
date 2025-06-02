@@ -38,7 +38,6 @@ class Address(models.Model):
 
 
 class ContactRelationship(TitleCaseFieldsMixin):
-  # TODO: fixture
     description = models.CharField(max_length=45, blank=True, null=True)
     title_case_fields = ['description']
 
@@ -124,7 +123,6 @@ class Education(models.Model):
 
 # class EmploymentType(models.Model):
 class EmploymentType(TitleCaseFieldsMixin):
-  # TODO: fixture
     emp_type = models.CharField(max_length=45, blank=True, null=True)
     title_case_fields = ['emp_type']
 
@@ -166,7 +164,6 @@ class SalaryType(TitleCaseFieldsMixin):
 
 
 class LocationType(TitleCaseFieldsMixin):
-  # TODO: fixture
     name = models.CharField(max_length=50)
     title_case_fields = ['name']
 
@@ -263,7 +260,7 @@ class Keyword(models.Model):
         return self.name
 
 
-class Organization(models.Model):  
+class Organization(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     short_name = models.CharField(max_length=45, blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)

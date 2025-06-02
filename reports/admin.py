@@ -5,7 +5,6 @@ from reports.models import ContactBackgroundCheck, ContactReferences, EducHistor
 # https://forum.djangoproject.com/t/creating-a-base-modeladmin-for-a-project/2944
 
 # TODO add report date
-# TODO remove current work here
 
 
 class ReportsAdmin(admin.ModelAdmin):
@@ -36,9 +35,8 @@ class EducHistoryAdmin(ReportsAdmin):
 @admin.register(WorkHistory)
 class WorkHistoryAdmin(ReportsAdmin):
 
-  # TODO maybe skip present since have is current position?
     list_display = ['position', 'org', 'job_address',
-                    'start_date_formatted', 'end_date_or_present', 'is_current_position', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
+                    'start_date_formatted', 'end_date_or_present', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
@@ -49,12 +47,16 @@ class ContactListDisplayMixin:
     list_display = ['full_name', 'phone', 'email',
                     'position', 'org', 'relationship', 'known_since', 'how_long_known']
 
-#TODO: changelist template
+# TODO: changelist template
+
+
 @admin.register(ContactReferences)
 class ContactReferencesAdmin(ContactListDisplayMixin, ReportsAdmin):
     pass
 
-#TODO: changelist template
+# TODO: changelist template
+
+
 @admin.register(ContactBackgroundCheck)
 class ContactBackgroundCheckAdmin(ContactListDisplayMixin, ReportsAdmin):
     pass
