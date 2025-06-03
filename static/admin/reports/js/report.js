@@ -7,16 +7,30 @@
     phan kosal
 */
 
-buildPrint = () => {
-  document.querySelector("#content h1").insertAdjacentHTML(
-    "afterend",
-    `
-        <div id="print-action" style = "display: flex; justify-content:space-between; align-items: center; margin-bottom: 1.5rem">
-          <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
-          <div><input type="button" value="Print" onClick="window.print()"></input></div>
-        </div>
-      `
-  );
+// buildPrint = () => {
+//   document.querySelector("#content h1").insertAdjacentHTML(
+//     "afterend",
+//     `
+//         <div id="print-action" style = "display: flex; justify-content:space-between; align-items: center; margin-bottom: 1.5rem">
+//           <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
+//           <div><input type="button" value="Print" onClick="window.print()"></input></div>
+//         </div>
+//       `
+//   );
+// };
+
+const buildPrint = () => {
+  const reportDate = document.querySelector(".report-header");
+
+  if (reportDate) {
+    const printHTML = `
+      <div id="print-action">
+        <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
+        <div><input type="button" value="Print" onClick="window.print()"></div>
+      </div>
+    `;
+    reportDate.insertAdjacentHTML("afterend", printHTML);
+  }
 };
 
 // have to wait until DOM loads

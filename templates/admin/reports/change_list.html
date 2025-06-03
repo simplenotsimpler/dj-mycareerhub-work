@@ -18,8 +18,13 @@
 
 {% block content %}
   <div class="report-wrapper">
-    <h1 class="report-title">{{ title }}</h1>
+    <header class="report-header">
+      <h1 class="report-title">{{ title }}</h1>
+      {% comment %} https://www.w3schools.com/django/ref_tags_now.php {% endcomment %}
+      <h2 class="report-date">{% now "M d, Y" %}</h2>
+    </header>
 
+    {% comment %} TODO: add main ? {% endcomment %}
     {% block report_content %}
       <!-- To be overridden by each proxy model -->
     {% endblock %}
