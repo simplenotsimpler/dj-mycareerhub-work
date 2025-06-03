@@ -24,10 +24,11 @@
       <h2 class="report-date">{% now "M d, Y" %}</h2>
     </header>
 
-    {% comment %} TODO: add main ? {% endcomment %}
-    {% block report_content %}
-      <!-- To be overridden by each proxy model -->
-    {% endblock %}
+    <main>
+      {% block report_content %}
+        <!-- To be overridden by each proxy model -->
+      {% endblock %}
+    </main>
   </div>
 {% endblock %}
 

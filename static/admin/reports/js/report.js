@@ -6,19 +6,7 @@
     phan kosal's user avatar
     phan kosal
 */
-
-// buildPrint = () => {
-//   document.querySelector("#content h1").insertAdjacentHTML(
-//     "afterend",
-//     `
-//         <div id="print-action" style = "display: flex; justify-content:space-between; align-items: center; margin-bottom: 1.5rem">
-//           <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
-//           <div><input type="button" value="Print" onClick="window.print()"></input></div>
-//         </div>
-//       `
-//   );
-// };
-
+//NOTE: semantic - debatable if should be div or another option
 const buildPrint = () => {
   const reportDate = document.querySelector(".report-header");
 
