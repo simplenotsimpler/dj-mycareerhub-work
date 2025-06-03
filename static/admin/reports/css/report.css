@@ -5,7 +5,7 @@
   background: #fff;
 }
 
-.report-entry {
+.report-entry-list {
   padding: 1em;
   margin-bottom: 1em;
 }
@@ -30,13 +30,12 @@ address {
   font-style: normal;
 }
 
-/* TODO: rename styles to be more generic */
-.application-style {
+.section-table-layout {
   display: flex;
   flex-direction: column;
 }
 
-.job-entry {
+.report-entry {
   border: 1px solid #ccc;
   padding: 0.75rem;
   border-radius: 4px;
@@ -44,49 +43,39 @@ address {
   margin-bottom: 1.25rem;
 }
 
-.job-entry header h1 {
+.report-entry header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.report-entry header h1 {
   font-weight: bold;
   margin: 0;
   font-size: 1.2rem;
 }
 
-.job-entry .org-line {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0.25rem 0 0;
-  font-size: 0.95rem;
-}
-
-.job-entry dl {
+.report-entry dl {
   display: grid;
   grid-template-columns: max-content 1fr max-content 1fr;
-  gap: 0.5rem 1rem;
+  /* gap: 0.5rem 1rem; */
+  gap: 1rem;
   align-items: start;
   margin-top: 1rem;
 }
 
-.job-entry dt {
+.report-entry dt,
+.report-entry dd {
+  margin: 0;
+  font-size: 0.9rem !important;
+}
+.report-entry dt {
   font-weight: bold;
-  margin: 0;
 }
 
-.job-entry dd {
-  margin: 0;
-}
-
-@media (max-width: 800px) {
-  .job-entry dl {
+/* NOTE: this does not take into account the Django sidebar */
+/* TODO: fix if theme/styling does not fix */
+@media only screen and (max-width: 800px) {
+  .report-entry dl {
     grid-template-columns: max-content 1fr;
-  }
-
-  .job-entry .org-line {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .job-entry .contact-status {
-    align-self: flex-start;
   }
 }

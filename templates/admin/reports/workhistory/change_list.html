@@ -1,18 +1,16 @@
 {% extends "admin/reports/change_list.html" %}
 
 {% block report_content %}
-<section class="application-style">
+<section class="section-table-layout">
   {% for obj in cl.result_list %}
-    <article class="job-entry">
+    <article class="report-entry">
       <header>
         <h1>{{ obj.position }}</h1>
-        <p class="org-line">
-          <span><strong>{{ obj.org }}</strong></span>
-          {% comment %} TODO: fix strong on Okay to contact {% endcomment %}
-          <span class="contact-status">Okay to Contact: <strong>{{ obj.okay_to_contact|yesno:"Yes,No" }}</strong></span>
-        </p>
+        <div>Okay to Contact: <strong>{{ obj.okay_to_contact|yesno:"Yes,No" }}</strong></div>
       </header>
       <dl>
+        <dt>Organization</dt>
+        <dd>{{ obj.org }}</dd>
         <dt>Employment Type</dt>
         <dd>{{ obj.employment_type }}</dd>
 

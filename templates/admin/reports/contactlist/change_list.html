@@ -1,9 +1,9 @@
 {% extends "admin/reports/change_list.html" %}
 
 {% block report_content %}
-<section class="application-style">
+<section class="section-table-layout">
   {% for obj in cl.result_list %}
-    <article class="job-entry">
+    <article class="report-entry">
       <header>
         <h1>{{ obj.full_name }}</h1>
         <div>Current Reference:  <strong>{{ obj.current_reference|yesno:"Yes,No" }}</strong></div>
@@ -16,6 +16,8 @@
         <dd>{{ obj.email }}</dd>
         <dt>Position</dt>
         <dd>{{obj.position}}</dt>
+        <dt>Organization</dt>
+        <dd>{{obj.org}}</dd>        
         <dt>Relationship</dt>
         <dd>{{obj.relationship}}</dd>
         <dt>Known Since</dt>

@@ -42,7 +42,7 @@
     margin: 0 0 0.5rem;
   }
 
-  .report-entry {
+  .report-entry-list {
     margin: 0 0 0.75rem;
     page-break-inside: avoid;
   }
@@ -52,37 +52,19 @@
     width: 100%;
   }
 
-  .application-style {
+  .section-table-layout {
     margin-bottom: 0 !important;
   }
 
-  .job-entry {
+  .report-entry {
     page-break-inside: avoid;
     break-inside: avoid;
     break-after: avoid-page;
     border: none !important;
   }
 
-  .job-entry:last-child {
+  .report-entry:last-child {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
-  }
-
-  .org-line {
-    display: table !important;
-    width: 100%;
-    margin: 0;
-    font-size: 0.95rem;
-    table-layout: fixed;
-  }
-
-  .org-line > span {
-    display: table-cell;
-    vertical-align: baseline;
-  }
-
-  .okay-to-contact {
-    text-align: right;
-    white-space: nowrap;
   }
 }
