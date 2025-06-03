@@ -34,9 +34,8 @@ class EducHistoryAdmin(ReportsAdmin):
 
 @admin.register(WorkHistory)
 class WorkHistoryAdmin(ReportsAdmin):
-    # TODO add okay to contact so parallel with report
     list_display = ['position', 'org', 'job_address',
-                    'start_date_formatted', 'end_date_or_present', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving']
+                    'start_date_formatted', 'end_date_or_present', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving', 'okay_to_contact']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
