@@ -4,9 +4,6 @@ from reports.models import ContactList, EducHistory, WorkHistory
 
 # https://forum.djangoproject.com/t/creating-a-base-modeladmin-for-a-project/2944
 
-# TODO add report date
-
-
 class ReportsAdmin(admin.ModelAdmin):
     # NOTE: not sure if I want this removed when I'm listing things like Education History, etc.
     list_display_links = None
