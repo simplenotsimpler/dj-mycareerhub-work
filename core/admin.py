@@ -6,10 +6,7 @@ from django.forms import Textarea
 from core.models import Basics, Highlight, Job
 from core.singleton import SingletonModelAdmin
 
-
-# TODO: add Django import / export
-
-
+# NOTE: for import/export: use Django dumpdata/loaddata or via database
 # NOTE: mixin before the ModelAdmin
 
 
