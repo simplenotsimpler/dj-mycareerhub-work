@@ -84,8 +84,6 @@ address {
   font-weight: bold;
 }
 
-/* NOTE: this does not take into account the Django sidebar */
-/* TODO: fix if theme/styling does not fix */
 @media only screen and (max-width: 800px) {
   .report-entry dl {
     grid-template-columns: max-content 1fr;

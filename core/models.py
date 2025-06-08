@@ -2,7 +2,6 @@ from djmoney.models.fields import MoneyField
 from django.db import models
 from .singleton import *
 
-# TODO: add a config model via prebuilt singleton package
 # TODO: also set FK on delete in db
 
 
@@ -76,7 +75,7 @@ class Contact(models.Model):
     )
     relationship = models.ForeignKey(
         "ContactRelationship", on_delete=models.SET_NULL, blank=True, null=True)
-    relationship_is_former=models.BooleanField(
+    relationship_is_former = models.BooleanField(
         verbose_name="Former relationship?", default=False)
     current_reference = models.BooleanField(
         verbose_name="Current reference?", default=False)

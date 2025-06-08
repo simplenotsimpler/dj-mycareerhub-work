@@ -8,10 +8,7 @@ from core.singleton import SingletonModelAdmin
 
 
 # TODO: add Django import / export
-# NOTE: >> may be part of custom admin theme
 
-# TODO: customize admin >> either via theme or manually
-# NOTE: no inlines until after theme / customization
 
 # NOTE: mixin before the ModelAdmin
 
@@ -97,8 +94,6 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     )
     inlines = [HighlightInline]
 
-    # TODO: widen the position address width if adding theme does not fix
-    # TODO: reduce distance b/n label and widget if adding them does not fix - maybe reduce gap on related-widget-wrapper
     class Media:
         css = {
             "all": ["admin/core/css/main.css"],
