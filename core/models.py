@@ -2,7 +2,9 @@ from djmoney.models.fields import MoneyField
 from django.db import models
 from .singleton import *
 
-# TODO: also set FK on delete in db
+# NOTE: on_delete only set in db for CASCADE, not other options
+# See https://docs.djangoproject.com/en/5.2/ref/models/fields/#django.db.models.ForeignKey
+# See https://code.djangoproject.com/ticket/21961
 
 
 class TitleCaseFieldsMixin(models.Model):
