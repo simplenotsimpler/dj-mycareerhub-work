@@ -1,5 +1,5 @@
+/* inline styling: hide redundant original line & <model> text th */
 .inline-heading,
 .original {
   display: None !important;
 }
-

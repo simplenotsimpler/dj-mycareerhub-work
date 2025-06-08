@@ -74,7 +74,7 @@ class BasicsAdmin(SingletonModelAdmin):
 
 class HighlightInline(FormOverridesMixin, admin.TabularInline):
     model = Highlight
-    extra = 1
+    extra = 0
 
 
 @admin.register(Job)
@@ -82,7 +82,7 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
   # TODO: end_date read only if 'is_current_position' checked
   # can be done easily in Unfold theme
     fieldsets = (
-        ("Basic info", {
+        (None, {
             "fields": (
                 ('position'),
                 ('summary'),
