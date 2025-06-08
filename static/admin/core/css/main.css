@@ -1,5 +1,21 @@
-/* inline styling: hide redundant original line & <model> text th */
-.inline-heading,
-.original {
-  display: None !important;
+/* Visually indicate the input is disabled */
+.field-end_date.is-disabled input {
+  background-color: #f9f9f9;
+  color: #666;
+  border-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Visually indicate the label is disabled */
+.field-end_date.is-disabled label {
+  color: #999;
+}
+
+/* Visually dim and disable pointer for the calendar links */
+.field-end_date.is-disabled .datetimeshortcuts a {
+  color: #aaa;
+  pointer-events: none;
+  text-decoration: none;
+  cursor: not-allowed;
+  opacity: 0.5;
 }

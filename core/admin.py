@@ -73,8 +73,6 @@ class HighlightInline(FormOverridesMixin, admin.TabularInline):
 
 @admin.register(Job)
 class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
-  # TODO: end_date read only if 'is_current_position' checked
-  # can be done easily in Unfold theme
     fieldsets = (
         (None, {
             "fields": (
@@ -96,6 +94,7 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
             "all": ["admin/core/css/main.css"],
 
         }
+        js = ["admin/core/js/job_admin.js"]
 
 
 # Call the function after registering any specific model admin class.
