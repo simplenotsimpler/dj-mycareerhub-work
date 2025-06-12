@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 INSTALLED_APPS += [
     'djmoney',
+    "django_extensions",
     'core.apps.CoreConfig',
     'reports.apps.ReportsConfig',
 ]
@@ -151,3 +152,9 @@ STORAGES = {
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# settings for ERD
+GRAPH_MODELS = {
+    'all_applications': True,
+    'group_models': True,
+}
