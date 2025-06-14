@@ -2,10 +2,13 @@ asgiref==3.8.1
 babel==2.17.0
 Django==5.2
 django-db-views==0.1.11
+django-extensions==4.1
 django-money==3.5.4
 pillow==11.2.1
 psycopg2==2.9.10
 py-moneyed==3.0
+pydotplus==2.0.2
+pyparsing==3.2.3
 python-dateutil==2.9.0.post0
 python-decouple==3.8
 python-slugify==8.0.4
