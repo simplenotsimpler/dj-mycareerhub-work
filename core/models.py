@@ -249,19 +249,6 @@ class Job(models.Model):
         return self.position
 
 
-class Keyword(models.Model):
-    name = models.CharField(unique=True, max_length=45, blank=True, null=True)
-    skill = models.ForeignKey(
-        "Skill", on_delete=models.SET_NULL, blank=True, null=True)
-
-    class Meta:
-        verbose_name = "Skill Keyword"
-        verbose_name_plural = "Skill Keywords"
-
-    def __str__(self):
-        return self.name
-
-
 class Organization(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     short_name = models.CharField(max_length=45, blank=True, null=True)
@@ -315,7 +302,18 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+class Keyword(models.Model):
+    name = models.CharField(unique=True, max_length=45, blank=True, null=True)
+    skill = models.ForeignKey(
+        "Skill", on_delete=models.SET_NULL, blank=True, null=True)
 
+    class Meta:
+        verbose_name = "Skill Keyword"
+        verbose_name_plural = "Skill Keywords"
+
+    def __str__(self):
+        return self.name
+    
 class SocialProfile(models.Model):
     basics = models.ForeignKey(
         Basics, on_delete=models.SET_NULL, blank=True, null=True)
