@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.db import models
 from django.forms import Textarea
 
-from core.models import Basics, Highlight, Job
+from core.models import Basics, Highlight, Job, Keyword, Skill
 from core.singleton import SingletonModelAdmin
 
 # NOTE: for import/export: use Django dumpdata/loaddata or via database
@@ -70,7 +70,26 @@ class HighlightInline(FormOverridesMixin, admin.TabularInline):
     model = Highlight
     extra = 0
 
+class KeywordInline(FormOverridesMixin, admin.TabularInline):
+    model = Keyword
+    extra = 0
 
+
+@admin.register(Skill)
+class SkillAdmin(FormOverridesMixin, admin.ModelAdmin):
+    # This just works - keywords are automatically filtered
+    inlines = [KeywordInline]
+
+    def get_keywords(self, obj):
+        return ", ".join([
+            keyword.name for keyword in obj.keywords.all()
+        ])
+    get_keywords.short_description = "Keywords"
+
+    # list_display = ['name', 'icon', 'get_keywords']
+    list_display = ['name', 'icon', 'get_keywords']
+    list_display_links = ['name', 'icon', 'get_keywords']
+    
 @admin.register(Job)
 class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     fieldsets = (
