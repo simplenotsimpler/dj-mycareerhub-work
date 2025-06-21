@@ -29,6 +29,7 @@ class ListDisplayMixin:
         ]
         super(ListDisplayMixin, self).__init__(model, admin_site)
 
+
 def get_registered_inline_models():
     """
     Find all model classes used in registered inline admin classes.
@@ -39,7 +40,8 @@ def get_registered_inline_models():
     for model, admin_class in admin.site._registry.items():
         for inline in getattr(admin_class, 'inlines', []):
             # Inline can be a class or instance — normalize
-            inline_class = inline if inspect.isclass(inline) else inline.__class__
+            inline_class = inline if inspect.isclass(
+                inline) else inline.__class__
 
             if issubclass(inline_class, InlineModelAdmin):
                 try:
@@ -49,18 +51,17 @@ def get_registered_inline_models():
                 except AttributeError:
                     pass
 
-    return inline_models        
+    return inline_models
 
-# TODO move comment into the function so closer to code
-# automatically register models
-# https://tomdekan.com/articles/automatically-register-django-admin-models
-
-
-# only register core apps so do not have to unregister in other admin pages
 def register_current_app_models():
     """
-    Register any unregistered app models. We call this function    after registering any custom admin classes.
-     """
+      automatically register models
+      https://tomdekan.com/articles/automatically-register-django-admin-models   
+      limit to core apps so do not have to unregister in other admin pages
+    """
+    """
+      Register any unregistered app models. We call this function    after registering any custom admin classes.
+    """
     models_to_ignore = [
         'admin.LogEntry',
         'contenttypes.ContentType',
