@@ -70,9 +70,20 @@ class HighlightInline(FormOverridesMixin, admin.TabularInline):
     model = Highlight
     extra = 0
 
+    class Media:
+        css = {
+            "all": ["admin/inline.css"],
+        }
+
+
 class KeywordInline(FormOverridesMixin, admin.TabularInline):
     model = Keyword
     extra = 0
+
+    class Media:
+        css = {
+            "all": ["admin/inline.css"],
+        }
 
 
 @admin.register(Skill)
@@ -89,7 +100,8 @@ class SkillAdmin(FormOverridesMixin, admin.ModelAdmin):
     # list_display = ['name', 'icon', 'get_keywords']
     list_display = ['name', 'icon', 'get_keywords']
     list_display_links = ['name', 'icon', 'get_keywords']
-    
+
+
 @admin.register(Job)
 class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     fieldsets = (
