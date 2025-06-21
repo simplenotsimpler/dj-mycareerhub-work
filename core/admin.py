@@ -1,3 +1,5 @@
+import inspect
+from django.contrib.admin.options import InlineModelAdmin
 from django.apps import apps
 from django.contrib import admin
 from django.db import models
@@ -27,6 +29,29 @@ class ListDisplayMixin:
         ]
         super(ListDisplayMixin, self).__init__(model, admin_site)
 
+def get_registered_inline_models():
+    """
+    Find all model classes used in registered inline admin classes.
+    """
+    inline_models = set()
+
+    # Check all admin classes registered so far
+    for model, admin_class in admin.site._registry.items():
+        for inline in getattr(admin_class, 'inlines', []):
+            # Inline can be a class or instance — normalize
+            inline_class = inline if inspect.isclass(inline) else inline.__class__
+
+            if issubclass(inline_class, InlineModelAdmin):
+                try:
+                    inline_model = inline_class.model
+                    if inline_model:
+                        inline_models.add(inline_model)
+                except AttributeError:
+                    pass
+
+    return inline_models        
+
+# TODO move comment into the function so closer to code
 # automatically register models
 # https://tomdekan.com/articles/automatically-register-django-admin-models
 
@@ -45,11 +70,16 @@ def register_current_app_models():
         'authtoken.Token',
     ]
 
+    inline_models = get_registered_inline_models()
     app_models = apps.get_app_config('core').get_models()
     # for model in apps.get_models():
     for model in app_models:
         try:
-            if model._meta.label in models_to_ignore:
+            # if model._meta.label in models_to_ignore:
+            if (
+                model._meta.label in models_to_ignore or
+                model in inline_models
+            ):
                 continue
             else:
                 class modelAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
