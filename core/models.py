@@ -305,7 +305,7 @@ class Skill(models.Model):
 class Keyword(models.Model):
     name = models.CharField(unique=True, max_length=45, blank=True, null=True)
     skill = models.ForeignKey(
-        "Skill", on_delete=models.SET_NULL, blank=True, null=True)
+        "Skill", on_delete=models.SET_NULL, blank=True, null=True, related_name='keywords')
 
     class Meta:
         verbose_name = "Skill Keyword"
