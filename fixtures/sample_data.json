@@ -276,24 +276,21 @@
     "model": "core.skill",
     "pk": 1,
     "fields": {
-      "name": "Leadership",
-      "icon": "fa-solid fa-user-tie"
+      "name": "Leadership"
     }
   },
   {
     "model": "core.skill",
     "pk": 2,
     "fields": {
-      "name": "Technology",
-      "icon": "fa-solid fa-microchip"
+      "name": "Technology"
     }
   },
   {
     "model": "core.skill",
     "pk": 3,
     "fields": {
-      "name": "Philanthropy",
-      "icon": "fa-solid fa-hand-holding-heart"
+      "name": "Philanthropy"
     }
   },
   {

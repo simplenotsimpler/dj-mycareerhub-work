@@ -128,9 +128,9 @@ class SkillAdmin(FormOverridesMixin, admin.ModelAdmin):
         ])
     get_keywords.short_description = "Keywords"
 
-    # list_display = ['name', 'icon', 'get_keywords']
-    list_display = ['name', 'icon', 'get_keywords']
-    list_display_links = ['name', 'icon', 'get_keywords']
+
+    list_display = ['name', 'get_keywords']
+    list_display_links = ['name', 'get_keywords']
 
 
 @admin.register(Job)

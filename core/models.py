@@ -1,3 +1,4 @@
+from collections import defaultdict
 from djmoney.models.fields import MoneyField
 from django.db import models
 from .singleton import *
@@ -36,6 +37,10 @@ class Address(models.Model):
 
     def __str__(self):
         return self.address_line_1
+    
+    @property
+    def city_region(self):
+        return f"{self.city}, {self.region}"        
 
 
 class ContactRelationship(TitleCaseFieldsMixin):
@@ -114,6 +119,9 @@ class Education(models.Model):
     scale = models.FloatField(blank=True, null=True, default=4.0)
     courses_only = models.BooleanField(
         verbose_name="Courses only?", default=False)
+    is_current_education = models.BooleanField(
+        verbose_name="Currently attend here", default=False
+    )    
 
     class Meta:
         verbose_name = "Education"
@@ -123,7 +131,6 @@ class Education(models.Model):
         return f"{self.degree} - {self.field_of_study} - {self.institution}"
 
 
-# class EmploymentType(models.Model):
 class EmploymentType(TitleCaseFieldsMixin):
     emp_type = models.CharField(max_length=45, blank=True, null=True)
     title_case_fields = ['emp_type']
@@ -140,7 +147,7 @@ class EmploymentType(TitleCaseFieldsMixin):
 class Highlight(models.Model):
     highlight_text = models.TextField(blank=True, null=True, max_length=125)
     job = models.ForeignKey(
-        "Job", on_delete=models.SET_NULL, blank=True, null=True, related_name="job_highlights")
+        "Job", on_delete=models.SET_NULL, blank=True, null=True, related_name="highlights")
     is_duty = models.BooleanField(verbose_name="Is duty?", default=False)
 
     class Meta:
@@ -181,7 +188,10 @@ class LocationType(TitleCaseFieldsMixin):
 class Job(models.Model):
   # NOTE: reordering fields here does not change order in the db
   # No migration needed but does update the admin order
-    position = models.CharField(blank=True, null=True, max_length=125)
+    position = models.CharField(blank=True, null=True, max_length=125, help_text="Official position title")
+    position_supplement = models.CharField(
+        blank=True, null=True, max_length=125, help_text="Used when official position title not clear")
+    # summary per JSONResume summary    
     summary = models.TextField(blank=True, null=True, max_length=250)
     org = models.ForeignKey(
         "Organization",
@@ -271,13 +281,14 @@ class Organization(models.Model):
 
 
 class Basics(SingletonModel):
+    # NOTE: this is called Basics to align with JSON Resume standard
     full_name = models.CharField(blank=True, null=True, max_length=125)
-    display_name = models.CharField(blank=True, null=True, max_length=125)
-    basics_website = models.CharField(blank=True, null=True, max_length=255)
-    basics_email = models.CharField(blank=True, null=True, max_length=255)
+    public_display_name = models.CharField(blank=True, null=True, max_length=125)
+    website = models.CharField(blank=True, null=True, max_length=255)
+    email = models.CharField(blank=True, null=True, max_length=255)
     address = models.ForeignKey(
         Address, on_delete=models.SET_NULL, blank=True, null=True)
-    basics_phone = models.CharField(blank=True, null=True)
+    phone = models.CharField(blank=True, null=True)
 
     class Meta:
         managed = True
@@ -293,11 +304,11 @@ class Basics(SingletonModel):
 
 class Skill(models.Model):
     name = models.CharField(blank=True, null=True, max_length=125)
-    icon = models.CharField(blank=True, null=True, max_length=125)
 
+    # NOTE: added keywords here since the admin is using inlines and edits both
     class Meta:
-        verbose_name = "Skill"
-        verbose_name_plural = "Skills"
+        verbose_name = "Skills with keywords"
+        verbose_name_plural = "Skills with keywords"
 
     def __str__(self):
         return self.name
@@ -314,9 +325,20 @@ class Keyword(models.Model):
     def __str__(self):
         return self.name
     
+    @classmethod
+    def group_by_skill(cls, keywords_queryset):
+        skill_keywords = defaultdict(list)
+
+        # Only include keywords that are linked to a skill
+        for keyword in keywords_queryset.filter(skill__isnull=False).select_related('skill'):
+            skill_keywords[keyword.skill.name].append(keyword.name)
+
+        # Convert defaultdict to a regular dictionary and return
+        return dict(skill_keywords)    
+    
 class SocialProfile(models.Model):
     basics = models.ForeignKey(
-        Basics, on_delete=models.SET_NULL, blank=True, null=True)
+        Basics, on_delete=models.SET_NULL, blank=True, null=True, related_name="socials")
     network = models.CharField(max_length=45, blank=True, null=True)
     username = models.CharField(max_length=45, blank=True, null=True)
     url = models.CharField(max_length=255, blank=True, null=True)
