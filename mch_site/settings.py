@@ -46,6 +46,7 @@ INSTALLED_APPS += [
     "django_extensions",
     'core.apps.CoreConfig',
     'reports.apps.ReportsConfig',
+    'resumes.apps.ResumesConfig',
 ]
 
 MIDDLEWARE = [
