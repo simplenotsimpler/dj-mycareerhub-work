@@ -41,10 +41,10 @@ class Resume(models.Model):
         return self.name or f'Resume {self.pk}'
 
     # https://www.abidibo.net/blog/2015/01/21/add-links-django-admin-changelist-view/
-    # def print_link(self):
-    #     return mark_safe('<a class="grp-button" href="%s" target="blank">Print view</a>' % reverse('resume_detail', args=[self.id]))
-    # print_link.short_description = "Print view"
+    def print_link(self):
+        return mark_safe('<a class="grp-button" href="%s" target="blank">Print view</a>' % reverse('resume_detail', args=[self.id]))
+    print_link.short_description = "Print view"
 
-    # def word_link(self):
-    #     return mark_safe('<a class="grp-button" href="%s" target="blank">Word doc</a>' % reverse('get_word_with_pk', args=[self.id]))
-    # word_link.short_description = "Word doc"
+    def word_link(self):
+        return mark_safe('<a class="grp-button" href="%s" target="blank">Word doc</a>' % reverse('get_word_with_pk', args=[self.id]))
+    word_link.short_description = "Word doc"

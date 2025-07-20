@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{resume.name}}</title>
+    {% block styles %}      
+      <link rel="stylesheet" href="{% static 'resume/css/resume.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+    <main class="resume-container">
+      {% block content%}
+        {% include 'resume/partials/header.html' %}
+        {% include 'resume/partials/prof_profile.html' %}
+        {% include 'resume/partials/skills.html' %}
+        {% include 'resume/partials/work.html' %}
+        {% include 'resume/partials/education.html' %}
+       {% endblock %}
+    </main>
+  </body>
+</html>

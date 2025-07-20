@@ -1,0 +1,10 @@
+      <section>
+        <h2>Skills</h2>
+        <ul>
+            {% for skill, keywords in skills.items %}
+              <li>
+                <span class="skill">{{ skill }}:</span> {{keywords|join:" | "}}
+              </li>
+            {% endfor %}
+        </ul>
+      </section>

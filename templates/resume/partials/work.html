@@ -1,0 +1,24 @@
+   <section>
+        <h2>Relevant Work</h2>
+        {% for job in jobs %}
+            <article class="job">
+              <h3>
+                {{job.position}}
+                 {% comment %} {% if job.summary %}({{job.summary}}){% endif %} {% endcomment %}
+                 {% comment %} Not sure how to check for none for date. Good thing I have is_current_position. {% endcomment %}
+                <span class="job-dates">{{job.start_date|date:"M Y"}} – {% if job.is_current_position %}
+                    Present
+                  {% else %}
+                    {{job.end_date|date:"M Y"}}
+                  {% endif %}
+                  </span>
+              </h3>
+              <p class="job-meta">{{job.org.name}}, {{job.address.city_region}}</p>
+              <ul>
+               {% for highlight in job.highlights.all %}
+                  <li>{{highlight.highlight_text}}</li>                
+                {% endfor %}
+              </ul>
+            </article>
+        {% endfor %}
+      </section>

@@ -1,0 +1,15 @@
+      <header>
+        <h1>
+          {% if resume.is_public %}
+            {{ basics.public_display_name}}
+          {% else %}
+            {{ basics.full_name}}
+          {% endif %}
+        </h1>
+        <p class="contact-line">{% if not resume.is_public %}{{basics.phone}} |{% endif %}  {{basics.email}} | {{basics.address.city_region}}</p>
+        {% comment %} TODO socials - need the formatted urls from the view {% endcomment %}
+        <p class="contact-line">
+          {{socials|join:" | "}}
+          {% if basics.basics_website %} | {{basics.website}}{% endif %}
+        </p>
+      </header>
