@@ -7,7 +7,6 @@
           {% endif %}
         </h1>
         <p class="contact-line">{% if not resume.is_public %}{{basics.phone}} |{% endif %}  {{basics.email}} | {{basics.address.city_region}}</p>
-        {% comment %} TODO socials - need the formatted urls from the view {% endcomment %}
         <p class="contact-line">
           {{social_urls|join:" | "}}
           {% if basics.website %} | {{basics.website}}{% endif %}

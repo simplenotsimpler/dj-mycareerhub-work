@@ -29,13 +29,13 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
 
 
 class ResumeDetailView(StaffRequiredMixin, DetailView):
-    # wonder if leaving out DetailView was causing the issue with template not being recognized?
     model = Resume
-    # context_object_name = 'resume'
+
     # explicitly set the <app name>/template
     # Django does not consistently recognize otherwise
     template_name = 'resume/resume.html'
 
+    #TODO can I reuse this for the Word view? maybe as a mixin?
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         resume = self.get_object()
@@ -57,7 +57,7 @@ class ResumeDetailView(StaffRequiredMixin, DetailView):
         context['educations'] = resume.educations.all().order_by('-start_date')
         return context
 
-
+#TODO: generate Word version
 @staff_member_required
 def get_word(request, pk):
     request_pk = pk
