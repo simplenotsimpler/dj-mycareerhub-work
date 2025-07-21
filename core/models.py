@@ -37,10 +37,10 @@ class Address(models.Model):
 
     def __str__(self):
         return self.address_line_1
-    
+
     @property
     def city_region(self):
-        return f"{self.city}, {self.region}"        
+        return f"{self.city}, {self.region}"
 
 
 class ContactRelationship(TitleCaseFieldsMixin):
@@ -121,7 +121,7 @@ class Education(models.Model):
         verbose_name="Courses only?", default=False)
     is_current_education = models.BooleanField(
         verbose_name="Currently attend here", default=False
-    )    
+    )
 
     class Meta:
         verbose_name = "Education"
@@ -188,10 +188,11 @@ class LocationType(TitleCaseFieldsMixin):
 class Job(models.Model):
   # NOTE: reordering fields here does not change order in the db
   # No migration needed but does update the admin order
-    position = models.CharField(blank=True, null=True, max_length=125, help_text="Official position title")
+    position = models.CharField(
+        blank=True, null=True, max_length=125, help_text="Official position title")
     position_supplement = models.CharField(
         blank=True, null=True, max_length=125, help_text="Used when official position title not clear")
-    # summary per JSONResume summary    
+    # summary per JSONResume summary
     summary = models.TextField(blank=True, null=True, max_length=250)
     org = models.ForeignKey(
         "Organization",
@@ -284,7 +285,8 @@ class Basics(SingletonModel):
     # TODO: maybe refactor to user profile instead of singleton - so can follow principle of least privilege
     # NOTE: this is called Basics to align with JSON Resume standard
     full_name = models.CharField(blank=True, null=True, max_length=125)
-    public_display_name = models.CharField(blank=True, null=True, max_length=125)
+    public_display_name = models.CharField(
+        blank=True, null=True, max_length=125)
     website = models.CharField(blank=True, null=True, max_length=255)
     email = models.CharField(blank=True, null=True, max_length=255)
     address = models.ForeignKey(
@@ -314,6 +316,7 @@ class Skill(models.Model):
     def __str__(self):
         return self.name
 
+
 class Keyword(models.Model):
     name = models.CharField(unique=True, max_length=45, blank=True, null=True)
     skill = models.ForeignKey(
@@ -323,9 +326,10 @@ class Keyword(models.Model):
         verbose_name = "Skill Keyword"
         verbose_name_plural = "Skill Keywords"
 
+    # return skill for now until can group by keywords in admin
     def __str__(self):
-        return self.name
-    
+        return f"{self.skill} - {self.name}"
+
     @classmethod
     def group_by_skill(cls, keywords_queryset):
         skill_keywords = defaultdict(list)
@@ -335,8 +339,9 @@ class Keyword(models.Model):
             skill_keywords[keyword.skill.name].append(keyword.name)
 
         # Convert defaultdict to a regular dictionary and return
-        return dict(skill_keywords)    
-    
+        return dict(skill_keywords)
+
+
 class SocialProfile(models.Model):
     basics = models.ForeignKey(
         Basics, on_delete=models.SET_NULL, blank=True, null=True, related_name="socials")
