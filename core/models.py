@@ -129,6 +129,7 @@ class Education(models.Model):
 
     def __str__(self):
         return f"{self.degree} - {self.field_of_study} - {self.institution}"
+    # TODO need unique constraint, & admin like have in job
 
 
 class EmploymentType(TitleCaseFieldsMixin):

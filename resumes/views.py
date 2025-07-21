@@ -53,11 +53,8 @@ class ResumeDetailView(StaffRequiredMixin, DetailView):
         context['social_urls'] = socials_urls
         context['skills'] = Keyword.group_by_skill(
             resume.keywords.all())
-        # TODO: although jobs is reverse chronological, explicitly sort
-        context['jobs'] = resume.jobs.all()
-        # TODO: fix sort order to be reverse chronological
-        context['educations'] = resume.educations.all()
-        # print(context)
+        context['jobs'] = resume.jobs.all().order_by('-start_date')
+        context['educations'] = resume.educations.all().order_by('-start_date')
         return context
 
 
