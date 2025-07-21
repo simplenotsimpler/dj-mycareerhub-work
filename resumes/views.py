@@ -10,6 +10,16 @@ from resumes.models import Resume
   NOTE: views originally developed in the dj-mch-test-resume repo
 '''
 
+from urllib.parse import urlparse
+
+
+def clean_uri(string_uri):
+    url = urlparse(string_uri)
+    host_name = url.hostname.replace('www.', '')
+    path_name = url.path
+
+    return host_name + path_name
+
 
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     """Restrict access to logged-in staff users only."""
@@ -30,12 +40,22 @@ class ResumeDetailView(StaffRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         resume = self.get_object()
 
+        # clean urls before passing to context
+        resume.basics.website = clean_uri(resume.basics.website)
+
+        socials = resume.social_profiles.all()
+        socials_urls = []
+
+        for social in socials:
+            socials_urls.append(clean_uri(social.url))
+
         context['basics'] = resume.basics
-        # TODO need to pass formatted social urls to template
-        context['socials'] = resume.social_profiles.all()
+        context['social_urls'] = socials_urls
         context['skills'] = Keyword.group_by_skill(
             resume.keywords.all())
+        # TODO: although jobs is reverse chronological, explicitly sort
         context['jobs'] = resume.jobs.all()
+        # TODO: fix sort order to be reverse chronological
         context['educations'] = resume.educations.all()
         # print(context)
         return context
