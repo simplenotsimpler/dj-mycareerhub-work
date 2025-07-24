@@ -36,7 +36,7 @@ class WorkHistoryAdmin(ReportsAdmin):
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)
-        return qs.prefetch_related("job_highlights")
+        return qs.prefetch_related("highlights")
 
 
 @admin.register(ContactList)

@@ -14,6 +14,7 @@
         <dt>Employment Type</dt>
         <dd>{{ obj.employment_type }}</dd>
 
+        {% comment %} TODO fix this when move to helper function {% endcomment %}
         <dt>Dates of Employment</dt>
         <dd>{{ obj.start_date_formatted }} – {{ obj.end_date_or_present }}</dd>
 
@@ -35,7 +36,7 @@
           </address>
         </dd>
         <dt>Highlights</dt>
-        {% for highlight in obj.job_highlights.all %}
+        {% for highlight in obj.highlights.all %}
           <dd>{{ highlight.highlight_text }}</dd>
         {% endfor %}      
       </dl>
