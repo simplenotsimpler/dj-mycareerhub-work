@@ -1,3 +1,5 @@
+# NOTE: This is a python package so no need to add it to Django apps
+from docxtpl import DocxTemplate
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from django.views.generic import DetailView
@@ -21,6 +23,31 @@ def clean_uri(string_uri):
     return host_name + path_name
 
 
+class ResumeContextMixin:
+    def get_resume_context(self, resume):
+        resume.basics.website = clean_uri(resume.basics.website)
+
+        socials = resume.social_profiles.all()
+        social_urls = [clean_uri(s.url) for s in socials]
+
+        # TODO move date logic from template to context so works in Word version - maybe just make a function like I did in handlebars version; move to common app later
+        # TODO: update HTML template as well
+
+        return {
+            'basics': resume.basics,
+            'social_urls': social_urls,
+            'skills': Keyword.group_by_skill(resume.keywords.all()),
+            'jobs': resume.jobs.all().order_by('-start_date'),
+            'educations': resume.educations.all().order_by('-start_date'),
+        }
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        resume = self.get_object()
+        context.update(self.get_resume_context(resume))
+        return context
+
+
 class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
     """Restrict access to logged-in staff users only."""
 
@@ -28,38 +55,34 @@ class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
         return self.request.user.is_staff
 
 
-class ResumeDetailView(StaffRequiredMixin, DetailView):
+class ResumeDetailView(StaffRequiredMixin, ResumeContextMixin, DetailView):
     model = Resume
-
-    # explicitly set the <app name>/template
-    # Django does not consistently recognize otherwise
     template_name = 'resume/resume.html'
 
-    #TODO can I reuse this for the Word view? maybe as a mixin?
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        resume = self.get_object()
 
-        # clean urls before passing to context
-        resume.basics.website = clean_uri(resume.basics.website)
+class ResumeDocxView(StaffRequiredMixin, ResumeContextMixin, DetailView):
+    model = Resume
+    #TODO fix template -> move date logic to context
+    def render_to_response(self, context, **response_kwargs):
+        # ← Make sure this path is correct
+        tpl = DocxTemplate("templates/resume/resume_template.docx")
+        tpl.render(context)
+        response = HttpResponse(
+            content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+        )
+        response['Content-Disposition'] = f'attachment; filename=resume-{self.object.pk}.docx'
+        tpl.save(response)
+        return response
 
-        socials = resume.social_profiles.all()
-        socials_urls = []
 
-        for social in socials:
-            socials_urls.append(clean_uri(social.url))
+# class ResumeDocxView(StaffRequiredMixin, ResumeContextMixin, DetailView):
+#     # TODO: generate Word version
+#     model = Resume
+#     # template_name not needed if you're generating response manually
 
-        context['basics'] = resume.basics
-        context['social_urls'] = socials_urls
-        context['skills'] = Keyword.group_by_skill(
-            resume.keywords.all())
-        context['jobs'] = resume.jobs.all().order_by('-start_date')
-        context['educations'] = resume.educations.all().order_by('-start_date')
-        return context
-
-#TODO: generate Word version
-@staff_member_required
-def get_word(request, pk):
-    request_pk = pk
-    print(f'primary key is: {request_pk}')
-    return HttpResponse(f'primary key is: {request_pk}')
+#     def render_to_response(self, context, **response_kwargs):
+#         print(context)
+#         return HttpResponse("Hello from ResumeDocxView")
+#         # Your Word generation logic here
+#         # Example: use context['jobs'], context['skills'], etc.
+#         # return HttpResponse(b'DOCX data', content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')

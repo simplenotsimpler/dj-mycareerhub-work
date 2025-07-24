@@ -4,6 +4,8 @@
             <article class="job">
               <h3>
                 {{job.position}}
+                {% comment %} TODO: add position_supplement {% endcomment %}
+                {% comment %} TODO: add prof profile {% endcomment %}
                  {% comment %} {% if job.summary %}({{job.summary}}){% endif %} {% endcomment %}
                  {% comment %} Not sure how to check for none for date. Good thing I have is_current_position. {% endcomment %}
                 <span class="job-dates">{{job.start_date|date:"M Y"}} – {% if job.is_current_position %}
