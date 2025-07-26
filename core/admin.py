@@ -4,11 +4,13 @@ from django.db import models
 
 
 from common.utils import FormOverridesMixin, ListDisplayMixin, register_current_app_models
-from core.models import Basics, Highlight, Job, Keyword, Skill
+from core.models import Basics, Education, Highlight, Job, Keyword, Skill
 from common.singleton import SingletonModelAdmin
 
 # NOTE: for import/export: use Django dumpdata/loaddata or via database
 # NOTE: mixin before the ModelAdmin
+
+# TODO fix date picker - why weird dates if use 1/2/2025 format?
 
 
 @admin.register(Basics)
@@ -76,13 +78,38 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
             field_name for field_name in list_display if field_name != "summary"]
         return filtered_list_display
 
-    # TODO reuse this for education, need to order educ fields in admin
     class Media:
+        # NOTE: not making this a mixin because not used beyond the core app
         css = {
             "all": ["admin/core/css/main.css"],
 
         }
-        js = ["admin/core/js/job_admin.js"]
+        js = ["admin/core/js/main.js"]
+
+
+@admin.register(Education)
+class EducationAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
+    fieldsets = (
+        (None, {
+            "fields": (
+                ('institution'),
+                ('address'),
+                ('degree', 'field_of_study'),
+                ('concentration', 'courses_only'),
+                ('start_date', 'end_date', 'is_current_education'),
+                ('score', 'scale'),
+                ('note')
+            ),
+        }),
+    )
+
+    class Media:
+        # NOTE: not making this a mixin because not used beyond the core app
+        css = {
+            "all": ["admin/core/css/main.css"],
+
+        }
+        js = ["admin/core/js/main.js"]
 
 
 # Call the function after registering any specific model admin class.

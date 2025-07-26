@@ -1,5 +1,7 @@
 const toggleEndDate = () => {
-  const isCurrentCheckbox = document.querySelector("#id_is_current_position");
+  const isCurrentCheckbox =
+    document.querySelector("#id_is_current_position") ||
+    document.querySelector("#id_is_current_education");
   const endDateInput = document.querySelector("#id_end_date");
   const endDateFieldBox = document.querySelector(".field-end_date.fieldBox");
   const endDateShortcuts = endDateFieldBox?.querySelector(".datetimeshortcuts");
