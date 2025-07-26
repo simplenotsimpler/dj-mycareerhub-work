@@ -36,14 +36,18 @@ class Resume(models.Model):
         blank=True
     )
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
         return self.name or f'Resume {self.pk}'
 
     # https://www.abidibo.net/blog/2015/01/21/add-links-django-admin-changelist-view/
+    # MAYBE later add styling to make these look like buttons
     def print_link(self):
-        return mark_safe('<a class="grp-button" href="%s" target="blank">Print view</a>' % reverse('resume_detail', args=[self.id]))
+        return mark_safe('<a href="%s" target="blank">Print view</a>' % reverse('resume_detail', args=[self.id]))
     print_link.short_description = "Print view"
 
     def word_link(self):
-        return mark_safe('<a class="grp-button" href="%s" target="blank">Word doc</a>' % reverse('get_word_with_pk', args=[self.id]))
+        return mark_safe('<a href="%s" target="blank">Word doc</a>' % reverse('get_word_with_pk', args=[self.id]))
     word_link.short_description = "Word doc"

@@ -5,8 +5,8 @@ from resumes.models import Resume
 
 @admin.register(Resume)
 class ResumeAdmin(admin.ModelAdmin):
-    # TODO use the list mixin and add links
-    # need to see last updated
-    # TODO make it a button?
-    list_display = ['id', 'name', 'is_public', 'print_link', 'word_link']
+
+    list_display = ['name', 'is_public', 'created_at',
+                    'updated_at', 'print_link', 'word_link']
+    readonly_fields = ('created_at', 'updated_at')
     filter_horizontal = ('social_profiles', 'keywords', 'jobs', 'educations',)
