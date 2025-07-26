@@ -5,11 +5,7 @@
             <h3>
               {{education.degree}}, {{education.field_of_study}}
               <span class="edu-date">
-                {{education.start_date|date:"M Y"}} – {% if education.is_current_education %}
-                    Present
-                  {% else %}
-                    {{education.end_date|date:"M Y"}}
-                  {% endif %}
+                {{education.start_date_formatted}} – {{education.end_date_formatted}}
                 </span>
             </h3>
             <p>{{education.institution}}, {{education.address.city_region}}</p>

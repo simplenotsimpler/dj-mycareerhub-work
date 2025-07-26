@@ -7,12 +7,7 @@
                 {% comment %} TODO: add position_supplement {% endcomment %}
                 {% comment %} TODO: add prof profile {% endcomment %}
                  {% comment %} {% if job.summary %}({{job.summary}}){% endif %} {% endcomment %}
-                 {% comment %} Not sure how to check for none for date. Good thing I have is_current_position. {% endcomment %}
-                <span class="job-dates">{{job.start_date|date:"M Y"}} – {% if job.is_current_position %}
-                    Present
-                  {% else %}
-                    {{job.end_date|date:"M Y"}}
-                  {% endif %}
+                <span class="job-dates">{{job.start_date_formatted}} – {{job.end_date_formatted}}
                   </span>
               </h3>
               <p class="job-meta">{{job.org.name}}, {{job.address.city_region}}</p>

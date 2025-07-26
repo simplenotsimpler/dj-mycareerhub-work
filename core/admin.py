@@ -69,6 +69,7 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     )
     inlines = [HighlightInline]
 
+    #TODO reuse this for education, need to order educ fields in admin
     class Media:
         css = {
             "all": ["admin/core/css/main.css"],
