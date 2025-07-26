@@ -4,8 +4,6 @@
             <article class="job">
               <h3>
                 {{job.position}} {% if job.position_supplement %}({{ job.position_supplement }}){% endif%}
-                {% comment %} TODO: add prof profile {% endcomment %}
-                 {% comment %} {% if job.summary %}({{job.summary}}){% endif %} {% endcomment %}
                 <span class="job-dates">{{job.start_date_formatted}} – {{job.end_date_formatted}}
                   </span>
               </h3>
