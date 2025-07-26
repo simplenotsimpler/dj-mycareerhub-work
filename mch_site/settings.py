@@ -45,6 +45,7 @@ INSTALLED_APPS += [
     'djmoney',
     "django_extensions",
     'core.apps.CoreConfig',
+    'common.apps.CommonConfig',
     'reports.apps.ReportsConfig',
     'resumes.apps.ResumesConfig',
 ]

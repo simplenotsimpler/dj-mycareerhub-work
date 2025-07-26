@@ -24,28 +24,6 @@ class EducHistory(Education):
 
     objects = EducHistoryReportManager()
 
-    def __str__(self):
-        return self.degree
-
-    @property
-    def degree_field(self):
-        return f"{self.degree}, {self.field_of_study}"
-
-    degree_field.fget.short_description = u'Degree'
-
-    @property
-    def location(self):
-        return f"{self.address.city}, {self.address.region}"
-
-    @property
-    def start_to_end(self):
-        return f"{self.start_date.strftime("%b %Y")} - {self.end_date.strftime("%b %Y")}"
-
-    @property
-    def gpa(self):
-        return f"{self.score} / {self.scale}"
-
-
 class WorkHistory(Job):
     class Meta:
         proxy = True
@@ -58,32 +36,6 @@ class WorkHistory(Job):
 
     objects = WorkHistoryReportManager()
 
-    def __str__(self):
-        return f"{self.position} at {self.org}"
-
-    @property
-    def start_date_formatted(self):
-        if self.start_date:
-            return format(self.start_date, "M Y")
-        return ""
-
-    @property
-    def end_date_or_present(self):
-        if self.end_date:
-            return format(self.end_date, "M Y")
-        return "Present"
-
-    @property
-    def job_address(self):
-        output = f"""
-          {self.address.address_line_1}
-          {self.address.address_line_2}
-          {self.address.address_line_3}
-          {self.address.city}, {self.address.region} {self.address.postal_code}
-        """
-        return output
-
-
 class ContactList(Contact):
     class Meta:
         proxy = True
@@ -92,14 +44,13 @@ class ContactList(Contact):
 
     class ContactListReportManager(models.Manager):
         def get_queryset(self) -> models.QuerySet:
-            return super().get_queryset().filter(Q(current_reference=True)|Q(background_check=True))
-        
-    objects=ContactListReportManager()
+            return super().get_queryset().filter(Q(current_reference=True) | Q(background_check=True))
+
+    objects = ContactListReportManager()
+
     @property
     def how_long_known(self):
         duration = relativedelta(date.today(), self.known_since)
         # {duration.years} Years {duration.months} months {duration.days} days
         output = f'{duration.years} Years'
-        return output    
-
-
+        return output

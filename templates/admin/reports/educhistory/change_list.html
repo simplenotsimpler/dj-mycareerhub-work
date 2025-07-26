@@ -9,7 +9,7 @@
           <li><strong>{{ obj.degree }}, {{ obj.field_of_study }}</strong></li>
           <li>{{ obj.institution }}</li>
           <li>{{obj.location}}</li>
-          <li>{{obj.start_to_end}}</li>
+          <li>{{obj.start_date_formatted}} - {{obj.end_date_formatted}}</li>
           <li>Grade: {{obj.gpa}}</li>          
           {% if obj.note %}
             <li>Note: {{obj.note}}</li>

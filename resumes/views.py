@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.views.generic import DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
+from common.utils import StaffRequiredMixin
 from core.models import Keyword
 from resumes.models import Resume
 
@@ -30,8 +31,9 @@ class ResumeContextMixin:
         socials = resume.social_profiles.all()
         social_urls = [clean_uri(s.url) for s in socials]
 
-        # TODO move date logic from template to context so works in Word version - maybe just make a function like I did in handlebars version; move to common app later
+     
         # TODO: update HTML template as well
+      
 
         return {
             'basics': resume.basics,
@@ -46,14 +48,6 @@ class ResumeContextMixin:
         resume = self.get_object()
         context.update(self.get_resume_context(resume))
         return context
-
-
-class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
-    """Restrict access to logged-in staff users only."""
-
-    def test_func(self):
-        return self.request.user.is_staff
-
 
 class ResumeDetailView(StaffRequiredMixin, ResumeContextMixin, DetailView):
     model = Resume

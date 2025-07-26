@@ -3,12 +3,10 @@ from django.contrib import admin, messages
 from django.db import models
 from django.http import HttpResponseRedirect
 from django.urls import re_path, reverse
-from django.utils.encoding import force_str
 from django.utils.html import format_html
 from urllib.parse import quote as urlquote
 
 # https://medium.com/@akshatgadodia/leveraging-singleton-models-for-streamlined-django-administration-c678c546a28e
-
 
 class SingletonModel(models.Model):
     singleton_instance_id = 1

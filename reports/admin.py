@@ -1,10 +1,12 @@
 from django.contrib import admin
 
+from common.utils import ReadOnlyAdminMixin
 from reports.models import ContactList, EducHistory, WorkHistory
 
 # https://forum.djangoproject.com/t/creating-a-base-modeladmin-for-a-project/2944
 
-class ReportsAdmin(admin.ModelAdmin):
+
+class ReportsAdmin(ReadOnlyAdminMixin, admin.ModelAdmin):
     # NOTE: not sure if I want this removed when I'm listing things like Education History, etc.
     list_display_links = None
 
@@ -13,26 +15,16 @@ class ReportsAdmin(admin.ModelAdmin):
         extra_context = {'title': self.model._meta.verbose_name}
         return super().changelist_view(request, extra_context=extra_context)
 
-    def has_add_permission(self, request, obj=None):
-        return False
-
-    def has_change_permission(self, request, obj=None):
-        return False
-
-    def has_delete_permission(self, request, obj=None):
-        return False
-
-
 @admin.register(EducHistory)
 class EducHistoryAdmin(ReportsAdmin):
     list_display = ['degree_field', 'institution',
-                    'location', 'start_to_end', 'gpa', 'note']
+                    'location', 'start_date_formatted', 'end_date_formatted', 'gpa', 'note']
 
 
 @admin.register(WorkHistory)
 class WorkHistoryAdmin(ReportsAdmin):
     list_display = ['position', 'org', 'job_address',
-                    'start_date_formatted', 'end_date_or_present', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving', 'okay_to_contact']
+                     'start_date_formatted', 'end_date_formatted', 'salary_from', 'salary_to', 'salary_per', 'employment_type', 'reason_for_leaving', 'okay_to_contact']
 
     def get_queryset(self, request):
         qs = super().get_queryset(request)

@@ -1,26 +1,12 @@
 from collections import defaultdict
 from djmoney.models.fields import MoneyField
 from django.db import models
-from .singleton import *
+from common.singleton import *
+from common.utils import FormatDatesMixin, TitleCaseFieldsMixin
 
 # NOTE: on_delete only set in db for CASCADE, not other options
 # See https://docs.djangoproject.com/en/5.2/ref/models/fields/#django.db.models.ForeignKey
 # See https://code.djangoproject.com/ticket/21961
-
-
-class TitleCaseFieldsMixin(models.Model):
-    # Ensure saved in title case in db
-    title_case_fields = []  # List of field names to title-case
-
-    def save(self, *args, **kwargs):
-        for field in self.title_case_fields:
-            value = getattr(self, field, None)
-            if isinstance(value, str):
-                setattr(self, field, value.title())
-        super().save(*args, **kwargs)
-
-    class Meta:
-        abstract = True
 
 
 class Address(models.Model):
@@ -98,7 +84,8 @@ class Contact(models.Model):
         return self.full_name
 
 
-class Education(models.Model):
+class Education(FormatDatesMixin, models.Model):
+    # class Education(models.Model):
     institution = models.ForeignKey(
         "Organization", on_delete=models.SET_NULL, blank=True, null=True
     )
@@ -130,6 +117,21 @@ class Education(models.Model):
     def __str__(self):
         return f"{self.degree} - {self.field_of_study} - {self.institution}"
     # TODO need unique constraint, & admin like have in job
+
+    @property
+    def location(self):
+        # encapsulate this return so can easily display in reports admin, etc.
+        return self.address.city_region
+
+    @property
+    def gpa(self):
+        return f"{self.score} / {self.scale}"
+
+    @property
+    def degree_field(self):
+        return f"{self.degree}, {self.field_of_study}"
+
+    degree_field.fget.short_description = u'Degree'
 
 
 class EmploymentType(TitleCaseFieldsMixin):
@@ -186,7 +188,7 @@ class LocationType(TitleCaseFieldsMixin):
         return self.name.title() if self.name else ""
 
 
-class Job(models.Model):
+class Job(FormatDatesMixin, models.Model):
   # NOTE: reordering fields here does not change order in the db
   # No migration needed but does update the admin order
     position = models.CharField(
@@ -258,7 +260,17 @@ class Job(models.Model):
         ]
 
     def __str__(self):
-        return self.position
+        return f"{self.position} at {self.org}"
+
+    @property
+    def job_address(self):
+        output = f"""
+          {self.address.address_line_1}
+          {self.address.address_line_2}
+          {self.address.address_line_3}
+          {self.address.city}, {self.address.region} {self.address.postal_code}
+        """
+        return output
 
 
 class Organization(models.Model):
