@@ -10,8 +10,7 @@ from core.models import Basics, Education, Job, Keyword, SocialProfile
 
 
 class Resume(models.Model):
-    # TODO maybe make name unique?? at very least need show id in the admin
-    name = models.CharField(max_length=125, default='resume')
+    name = models.CharField(max_length=125, default='resume', unique=True)
     professional_profile = models.TextField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
     # Okay to set default to 1 since we are using a singleton & this will be read only in the admin

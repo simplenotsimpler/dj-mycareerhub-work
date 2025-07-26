@@ -113,10 +113,17 @@ class Education(FormatDatesMixin, models.Model):
     class Meta:
         verbose_name = "Education"
         verbose_name_plural = "Education"
+        constraints = [
+            models.CheckConstraint(
+                condition=models.Q(end_date__gt=models.F("start_date")),
+                name="check_start_date_educ",
+                violation_error_message="End date must be after start date",
+            ),
+        ]        
 
     def __str__(self):
         return f"{self.degree} - {self.field_of_study} - {self.institution}"
-    # TODO need unique constraint, & admin like have in job
+    
 
     @property
     def location(self):
