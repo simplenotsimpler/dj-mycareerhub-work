@@ -56,7 +56,7 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             "fields": (
-                ('position'),
+                ('position', 'position_supplement'),
                 ('summary'),
                 ('org', 'client'),
                 ('address'),
@@ -69,7 +69,14 @@ class JobAdmin(FormOverridesMixin, ListDisplayMixin, admin.ModelAdmin):
     )
     inlines = [HighlightInline]
 
-    #TODO reuse this for education, need to order educ fields in admin
+    def get_list_display(self, request):
+        # remove summary from list because it can be too big
+        list_display = super(JobAdmin, self).get_list_display(request)
+        filtered_list_display = [
+            field_name for field_name in list_display if field_name != "summary"]
+        return filtered_list_display
+
+    # TODO reuse this for education, need to order educ fields in admin
     class Media:
         css = {
             "all": ["admin/core/css/main.css"],

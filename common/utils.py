@@ -15,6 +15,7 @@ from django.forms import Textarea
 
 
 def get_registered_inline_models():
+    # TODO test the inlines are working, e.g. highlights since it says model not accessed
     """
     Find all model classes used in registered inline admin classes.
     """
