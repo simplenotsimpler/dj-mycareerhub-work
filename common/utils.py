@@ -22,7 +22,7 @@ def get_registered_inline_models():
 
     # Check all admin classes registered so far
     for model, admin_class in admin.site._registry.items():
-        #ignore model not accessed - everything works
+        # ignore model not accessed - everything works
         for inline in getattr(admin_class, 'inlines', []):
             # Inline can be a class or instance — normalize
             inline_class = inline if inspect.isclass(
@@ -104,13 +104,15 @@ class FormOverridesMixin:
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 75})},
     }
 
+
 class AdminMediaMixin:
     class Media:
         css = {
             "all": ["admin/css/toggle_end_date.css"],
 
         }
-        js = ["admin/js/toggle_end_date.js"]    
+        js = ["admin/js/toggle_end_date.js", "admin/js/validate_iso_date.js"]
+
 
 class ListDisplayMixin:
     def __init__(self, model, admin_site):

@@ -7,9 +7,6 @@ from common.singleton import SingletonModelAdmin
 # NOTE: for import/export: use Django dumpdata/loaddata or via database
 # NOTE: mixin before the ModelAdmin
 
-# TODO fix date picker - why weird dates if use 1/2/2025 format?
-
-
 @admin.register(Basics)
 class BasicsAdmin(SingletonModelAdmin):
     pass
