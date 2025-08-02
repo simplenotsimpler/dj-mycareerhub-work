@@ -56,7 +56,7 @@ class JobAdmin(FormOverridesMixin, AdminMediaMixin, ListDisplayMixin, admin.Mode
                 ('summary'),
                 ('org', 'client'),
                 ('address'),
-                ('start_date', 'end_date', 'is_current_position'),
+                ('start_date', 'end_date', 'is_current'),
                 ('salary_from', 'salary_to', 'salary_per'),
                 ('location_type', 'employment_type'),
                 ('reason_for_leaving', 'okay_to_contact')
@@ -82,7 +82,7 @@ class EducationAdmin(FormOverridesMixin, AdminMediaMixin, ListDisplayMixin, admi
                 ('address'),
                 ('degree', 'field_of_study'),
                 ('concentration', 'courses_only'),
-                ('start_date', 'end_date', 'is_current_education'),
+                ('start_date', 'end_date', 'is_current'),
                 ('score', 'scale'),
                 ('note')
             ),

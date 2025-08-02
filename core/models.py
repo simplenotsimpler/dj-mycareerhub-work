@@ -105,8 +105,7 @@ class Education(FormatDatesMixin, models.Model):
     scale = models.FloatField(blank=True, null=True, default=4.0)
     courses_only = models.BooleanField(
         verbose_name="Courses only?", default=False)
-    # TODO rename is_current
-    is_current_education = models.BooleanField(
+    is_current = models.BooleanField(
         verbose_name="Currently attend here", default=False
     )
 
@@ -231,8 +230,7 @@ class Job(FormatDatesMixin, models.Model):
     )
     start_date = models.DateField(default=None, blank=True, null=True)
     end_date = models.DateField(default=None, blank=True, null=True)
-    # TODO rename is_current
-    is_current_position = models.BooleanField(
+    is_current = models.BooleanField(
         verbose_name="I currently work here", default=False
     )
 
