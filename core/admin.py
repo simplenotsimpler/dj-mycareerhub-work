@@ -24,7 +24,7 @@ class HighlightInline(FormOverridesMixin, admin.TabularInline):
 
     class Media:
         css = {
-            "all": ["admin/inline.css"],
+            "all": ["admin/css/inline.css"],
         }
 
 
@@ -34,7 +34,7 @@ class KeywordInline(FormOverridesMixin, admin.TabularInline):
 
     class Media:
         css = {
-            "all": ["admin/inline.css"],
+            "all": ["admin/css/inline.css"],
         }
 
 

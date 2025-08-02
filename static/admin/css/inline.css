@@ -1,0 +1,4 @@
+.original,
+.original ~ th {
+  display: none !important;
+}
