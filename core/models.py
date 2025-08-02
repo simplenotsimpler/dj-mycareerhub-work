@@ -197,6 +197,7 @@ class LocationType(TitleCaseFieldsMixin):
 class Job(FormatDatesMixin, models.Model):
   # NOTE: reordering fields here does not change order in the db
   # No migration needed but does update the admin order
+    # TODO make position required
     position = models.CharField(
         blank=True, null=True, max_length=125, help_text="Official position title")
     position_supplement = models.CharField(
