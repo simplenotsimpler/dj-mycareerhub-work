@@ -10,7 +10,7 @@ from common.utils import FormatDatesMixin, TitleCaseFieldsMixin
 
 
 class Address(models.Model):
-    address_line_1 = models.CharField(max_length=45, blank=True, null=True)
+    address_line_1 = models.CharField(max_length=45)
     address_line_2 = models.CharField(max_length=45, blank=True, null=True)
     address_line_3 = models.CharField(max_length=45, blank=True, null=True)
     city = models.CharField(max_length=45, blank=True, null=True)
@@ -30,7 +30,7 @@ class Address(models.Model):
 
 
 class ContactRelationship(TitleCaseFieldsMixin):
-    description = models.CharField(max_length=45, blank=True, null=True)
+    description = models.CharField(max_length=45)
     title_case_fields = ['description']
 
     class Meta:
@@ -43,7 +43,7 @@ class ContactRelationship(TitleCaseFieldsMixin):
 
 
 class Contact(models.Model):
-    full_name = models.CharField(blank=True, null=True, max_length=125)
+    full_name = models.CharField(max_length=125)
     position = models.CharField(blank=True, null=True, max_length=125)
     org = models.ForeignKey(
         "Organization",
@@ -95,7 +95,7 @@ class Education(FormatDatesMixin, models.Model):
         null=True,
         verbose_name="Institution Address",
     )
-    degree = models.CharField(blank=True, null=True, max_length=125)
+    degree = models.CharField(max_length=125)
     field_of_study = models.CharField(blank=True, null=True, max_length=125)
     concentration = models.CharField(blank=True, null=True, max_length=125)
     start_date = models.DateField(default=None, blank=True, null=True)
@@ -141,7 +141,7 @@ class Education(FormatDatesMixin, models.Model):
 
 
 class EmploymentType(TitleCaseFieldsMixin):
-    emp_type = models.CharField(max_length=45, blank=True, null=True)
+    emp_type = models.CharField(max_length=45)
     title_case_fields = ['emp_type']
 
     class Meta:
@@ -196,10 +196,9 @@ class LocationType(TitleCaseFieldsMixin):
 
 class Job(FormatDatesMixin, models.Model):
   # NOTE: reordering fields here does not change order in the db
-  # No migration needed but does update the admin order
-    # TODO make position required
+  # No migration needed but does update the admin order    
     position = models.CharField(
-        blank=True, null=True, max_length=125, help_text="Official position title")
+        max_length=125, help_text="Official position title")
     position_supplement = models.CharField(
         blank=True, null=True, max_length=125, help_text="Used when official position title not clear")
     # summary per JSONResume summary
@@ -282,7 +281,7 @@ class Job(FormatDatesMixin, models.Model):
 
 
 class Organization(models.Model):
-    name = models.CharField(max_length=100, blank=True, null=True)
+    name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=45, blank=True, null=True)
     website = models.CharField(max_length=255, blank=True, null=True)
     note = models.TextField(blank=True, null=True)
@@ -339,7 +338,7 @@ class Skill(models.Model):
 
 
 class Keyword(models.Model):
-    name = models.CharField(unique=True, max_length=45, blank=True, null=True)
+    name = models.CharField(unique=True, max_length=45)
     skill = models.ForeignKey(
         "Skill", on_delete=models.SET_NULL, blank=True, null=True, related_name='keywords')
 
@@ -368,7 +367,7 @@ class SocialProfile(models.Model):
         Basics, on_delete=models.SET_NULL, blank=True, null=True, related_name="socials")
     network = models.CharField(max_length=45, blank=True, null=True)
     username = models.CharField(max_length=45, blank=True, null=True)
-    url = models.CharField(max_length=255, blank=True, null=True)
+    url = models.CharField(max_length=255, unique=True)
 
     class Meta:
         verbose_name = "Social Profile"

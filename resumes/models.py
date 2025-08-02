@@ -10,7 +10,7 @@ from core.models import Basics, Education, Job, Keyword, SocialProfile
 
 
 class Resume(models.Model):
-    name = models.CharField(max_length=125, default='resume', unique=True)
+    name = models.CharField(max_length=125, unique=True)
     professional_profile = models.TextField(null=True, blank=True)
     is_public = models.BooleanField(default=False)
     # Okay to set default to 1 since we are using a singleton & this will be read only in the admin
