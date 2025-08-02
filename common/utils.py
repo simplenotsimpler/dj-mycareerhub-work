@@ -104,6 +104,13 @@ class FormOverridesMixin:
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 75})},
     }
 
+class AdminMediaMixin:
+    class Media:
+        css = {
+            "all": ["admin/css/toggle_end_date.css"],
+
+        }
+        js = ["admin/js/toggle_end_date.js"]    
 
 class ListDisplayMixin:
     def __init__(self, model, admin_site):

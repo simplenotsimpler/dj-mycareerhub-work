@@ -85,7 +85,6 @@ class Contact(models.Model):
 
 
 class Education(FormatDatesMixin, models.Model):
-    # class Education(models.Model):
     institution = models.ForeignKey(
         "Organization", on_delete=models.SET_NULL, blank=True, null=True
     )
@@ -106,6 +105,7 @@ class Education(FormatDatesMixin, models.Model):
     scale = models.FloatField(blank=True, null=True, default=4.0)
     courses_only = models.BooleanField(
         verbose_name="Courses only?", default=False)
+    # TODO rename is_current
     is_current_education = models.BooleanField(
         verbose_name="Currently attend here", default=False
     )
@@ -119,11 +119,10 @@ class Education(FormatDatesMixin, models.Model):
                 name="check_start_date_educ",
                 violation_error_message="End date must be after start date",
             ),
-        ]        
+        ]
 
     def __str__(self):
         return f"{self.degree} - {self.field_of_study} - {self.institution}"
-    
 
     @property
     def location(self):
@@ -232,6 +231,7 @@ class Job(FormatDatesMixin, models.Model):
     )
     start_date = models.DateField(default=None, blank=True, null=True)
     end_date = models.DateField(default=None, blank=True, null=True)
+    # TODO rename is_current
     is_current_position = models.BooleanField(
         verbose_name="I currently work here", default=False
     )
