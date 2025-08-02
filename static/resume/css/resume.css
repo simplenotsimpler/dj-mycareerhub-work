@@ -1,12 +1,14 @@
 :root {
   --font: Arial, Helvetica, Georgia, Tahoma, Verdana, sans-serif;
 
-  --max-width: 8.5in;
-  --padding: 1rem;
+  --padding: 2rem;
 
-  --line-height: 1.5;
+  --line-height: 1.4;
   --gap: 0.25rem;
   --big-gap: 1rem;
+
+  --bg-color: white;
+  --text-color: black;
 }
 
 /* unset the font-size so have to explicitly set */
@@ -23,20 +25,19 @@ ul {
   font-size: unset;
 }
 
-body {
+.resume-container {
   font-family: var(--font);
   font-size: 0.95rem;
-  color: black;
+  color: var(--text-color);
   margin: 0;
   padding: 0;
-  background-color: white;
+  background-color: var(--bg-color);
   line-height: var(--line-height);
 }
 
-.resume-container {
-  max-width: var(--max-width);
+main {
+  width: 85%;
   margin: auto;
-  padding: var(--padding);
 }
 
 header {
@@ -107,13 +108,51 @@ li {
 #print-action {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin: var(--padding) 0;
+}
+
+/**
+ * =============================================
+ * =        GENERAL PRINT STYLES               =
+ * =============================================
+ *
+ */
+
+/* Defining all page breaks */
+a,
+blockquote,
+q,
+table,
+pre,
+ul,
+ol,
+dl,
+p,
+p > span,
+li,
+section,
+article {
+  page-break-inside: avoid;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+img,
+figure {
+  page-break-after: avoid;
+  page-break-inside: avoid;
 }
 
 @media print {
   #print-action {
     display: none;
   }
-}
 
-/* TODO: print page breaks styling */
+  main {
+    width: 100%;
+  }
+}

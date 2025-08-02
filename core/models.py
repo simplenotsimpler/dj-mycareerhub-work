@@ -300,7 +300,7 @@ class Organization(models.Model):
 
 
 class Basics(SingletonModel):
-    # TODO: maybe refactor to user profile instead of singleton - so can follow principle of least privilege
+    # MAYBE refactor to user profile instead of singleton - so can follow principle of least privilege
     # NOTE: this is called Basics to align with JSON Resume standard
     full_name = models.CharField(blank=True, null=True, max_length=125)
     public_display_name = models.CharField(

@@ -50,6 +50,7 @@ class ResumeDetailView(StaffRequiredMixin, ResumeContextMixin, DetailView):
 
 
 class ResumeDocxView(StaffRequiredMixin, ResumeContextMixin, DetailView):
+    # MAYBE need to tweak Word formatting for keeping text together when get actual data
     model = Resume
 
     def render_to_response(self, context, **response_kwargs):
@@ -62,4 +63,3 @@ class ResumeDocxView(StaffRequiredMixin, ResumeContextMixin, DetailView):
         response['Content-Disposition'] = f'attachment; filename=resume-{self.object.pk}.docx'
         tpl.save(response)
         return response
-
