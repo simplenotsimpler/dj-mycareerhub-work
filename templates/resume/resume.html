@@ -11,8 +11,12 @@
   </head>
   <body>
     <main class="resume-container">
-      {% comment %} TODO: add note about browser headers & footers - see report.js & hide via css when printed {% endcomment %}
+      {% comment %} Note also in: static/admin/reports/js/report.js {% endcomment %}
       {% block content%}
+        <div id="print-action">
+          <div><strong>NOTE:</strong> browser headers and footers have to be removed in the browser print dialog</div>
+          <div><input type="button" value="Print" onClick="window.print()"></div>
+        </div>
         {% include 'resume/partials/header.html' %}
         {% include 'resume/partials/professional_profile.html' %}
         {% include 'resume/partials/skills.html' %}

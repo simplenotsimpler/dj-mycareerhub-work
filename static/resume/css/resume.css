@@ -103,3 +103,17 @@ li {
   font-weight: bold;
   text-transform: uppercase;
 }
+
+#print-action {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+@media print {
+  #print-action {
+    display: none;
+  }
+}
+
+/* TODO: print page breaks styling */
