@@ -4,7 +4,7 @@ from datetime import datetime
 from django.apps import apps
 from django.contrib import admin
 from django.contrib.admin.options import InlineModelAdmin
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 from django.db import models
 from django.forms import Textarea
 
@@ -164,8 +164,5 @@ class ReadOnlyAdminMixin:
         return False
 
 
-class StaffRequiredMixin(LoginRequiredMixin, UserPassesTestMixin):
-    """Restrict access to logged-in staff users only."""
-
-    def test_func(self):
-        return self.request.user.is_staff
+class StaffRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
+    permission_required = 'is_staff'
