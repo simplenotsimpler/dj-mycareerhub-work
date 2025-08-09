@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.db import models
 from django.forms import Textarea
 
+#TODO remove unused imports
+
 '''
     HELPERS
 '''
@@ -40,6 +42,7 @@ def get_registered_inline_models():
 
 
 def register_current_app_models():
+    # TODO fix so can be used in any app
     """
       automatically register models
       https://tomdekan.com/articles/automatically-register-django-admin-models   

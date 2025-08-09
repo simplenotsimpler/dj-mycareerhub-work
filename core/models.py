@@ -337,6 +337,7 @@ class Skill(models.Model):
 
 class Keyword(models.Model):
     name = models.CharField(unique=True, max_length=45)
+    # TODO fix skill should not be quoted
     skill = models.ForeignKey(
         "Skill", on_delete=models.SET_NULL, blank=True, null=True, related_name='keywords')
 
