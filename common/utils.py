@@ -42,11 +42,9 @@ def get_registered_inline_models():
 
 
 def register_current_app_models():
-    # TODO fix so can be used in any app
     """
       automatically register models
-      https://tomdekan.com/articles/automatically-register-django-admin-models   
-      limit to core apps so do not have to unregister in other admin pages
+      https://tomdekan.com/articles/automatically-register-django-admin-models      
     """
     """
       Register any unregistered app models. We call this function    after registering any custom admin classes.
@@ -60,9 +58,14 @@ def register_current_app_models():
         'authtoken.Token',
     ]
 
+    current_module = inspect.getmodule(inspect.stack()[1][0])
+    app_config = apps.get_containing_app_config(current_module.__name__)
+    if not app_config:
+        raise RuntimeError(f"Could not determine app for module {current_module.__name__}")
+
     inline_models = get_registered_inline_models()
-    app_models = apps.get_app_config('core').get_models()
-    # for model in apps.get_models():
+    app_models = app_config.get_models()
+
     for model in app_models:
         try:
             # if model._meta.label in models_to_ignore:
