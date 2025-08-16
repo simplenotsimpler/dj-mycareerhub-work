@@ -47,6 +47,7 @@ INSTALLED_APPS += [
     "django_extensions",
     'core.apps.CoreConfig',
     'common.apps.CommonConfig',
+    'portfolio.apps.PortfolioConfig',
     'reports.apps.ReportsConfig',
     'resumes.apps.ResumesConfig',
 ]
@@ -150,6 +151,9 @@ STORAGES = {
         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
     },
 }
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
