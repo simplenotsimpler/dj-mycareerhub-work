@@ -195,7 +195,7 @@ class LocationType(TitleCaseFieldsMixin):
 
 class Job(FormatDatesMixin, models.Model):
   # NOTE: reordering fields here does not change order in the db
-  # No migration needed but does update the admin order    
+  # No migration needed but does update the admin order
     position = models.CharField(
         max_length=125, help_text="Official position title")
     position_supplement = models.CharField(
@@ -337,9 +337,10 @@ class Skill(models.Model):
 
 class Keyword(models.Model):
     name = models.CharField(unique=True, max_length=45)
-    # TODO fix skill should not be quoted
+    # removed quotes on FK model so parallel & faster
+    # see https://stackoverflow.com/questions/4708940/django-why-are-quotes-around-the-model-in-a-foreignkey-definition
     skill = models.ForeignKey(
-        "Skill", on_delete=models.SET_NULL, blank=True, null=True, related_name='keywords')
+        Skill, on_delete=models.SET_NULL, blank=True, null=True, related_name='keywords')
 
     class Meta:
         verbose_name = "Skill Keyword"
