@@ -1,9 +1,7 @@
 # NOTE: This is a python package so no need to add it to Django apps
 from docxtpl import DocxTemplate
-from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse
 from django.views.generic import DetailView
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from common.utils import StaffRequiredMixin
 from core.models import Keyword

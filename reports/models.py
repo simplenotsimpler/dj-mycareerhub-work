@@ -1,7 +1,5 @@
 from datetime import date
 from django.db import models
-# from dateutil import relativedelta
-from django.utils.dateformat import format
 from dateutil.relativedelta import relativedelta
 from django.db.models import Q
 

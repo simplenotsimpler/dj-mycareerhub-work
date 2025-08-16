@@ -4,11 +4,9 @@ from datetime import datetime
 from django.apps import apps
 from django.contrib import admin
 from django.contrib.admin.options import InlineModelAdmin
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db import models
 from django.forms import Textarea
-
-#TODO remove unused imports
 
 '''
     HELPERS
