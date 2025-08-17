@@ -7,7 +7,7 @@ from common.utils import register_current_app_models
 from common.singleton import SingletonModelAdmin
 from common.utils import register_current_app_models
 from portfolio.forms import NavItemAdminForm
-from portfolio.models import AboutHero, NavItem, Navigation, Portfolio, SEOConfig
+from portfolio.models import AboutHero, NavItem, Navigation, Portfolio, Quote, SEOConfig
 
 
 @admin.register(SEOConfig)
@@ -17,6 +17,11 @@ class SEOConfigAdmin(SingletonModelAdmin):
 
 @admin.register(AboutHero)
 class AboutHeroAdmin(SingletonModelAdmin):
+    pass
+
+
+@admin.register(Quote)
+class QuoteAdmin(SingletonModelAdmin):
     pass
 
 
@@ -49,4 +54,3 @@ class PortfolioAdmin(SingletonModelAdmin):
 
 # Call the function after registering any specific model admin class.
 register_current_app_models()
-

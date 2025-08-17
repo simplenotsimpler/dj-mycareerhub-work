@@ -37,7 +37,7 @@ class SEOConfig(SingletonModel):
         return f'SEO: {self.title}'
 
 
-class Quote(models.Model):
+class Quote(SingletonModel):
     text = models.TextField()
     author = models.CharField(max_length=125)
     cite_href = models.URLField(max_length=255, blank=True, null=True)
@@ -45,6 +45,10 @@ class Quote(models.Model):
     quote_image = models.ImageField(upload_to='quote/', null=True, blank=True)
     quote_image_alt_text = models.CharField(
         max_length=20, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Quote"
+        verbose_name_plural = "Quote"
 
     def __str__(self):
         return f'"{self.text}" — {self.author}'
@@ -129,13 +133,13 @@ class Portfolio(SingletonModel):
     )
     seo_config = models.OneToOneField(
         SEOConfig, on_delete=models.SET_NULL, null=True,  related_name='portfolio', )
-    #basics is just in case want to add public display name or something
+    # basics is just in case want to add public display name or something
     basics = models.OneToOneField(
         Basics, on_delete=models.SET_NULL, null=True, related_name='portfolio', )
     about_hero = models.OneToOneField(
         AboutHero, on_delete=models.SET_NULL, null=True, related_name='portfolio', )
-    quote = models.ForeignKey(
-        Quote, on_delete=models.SET_NULL, blank=True, null=True, related_name='portfolio')
+    quote = models.OneToOneField(
+        Quote, on_delete=models.SET_NULL, null=True, related_name='portfolio')
     social_profiles = models.ManyToManyField(
         SocialProfile,
         blank=True,
