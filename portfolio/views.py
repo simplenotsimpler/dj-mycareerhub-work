@@ -1,12 +1,11 @@
 from django.http import Http404
 from django.views.generic import TemplateView
 
+from common.github import get_projects
 from core.models import Keyword
 from portfolio.models import Portfolio
 
 # TODO: style templates - not sure if want Bootstrap, my current CSS or some combo
-# TODO: bring in GitHub Repos and build this out
-
 
 class PortfolioView(TemplateView):
     template_name = 'portfolio/portfolio.html'
@@ -21,6 +20,7 @@ class PortfolioView(TemplateView):
         context = super().get_context_data(**kwargs)
         portfolio = self.get_object_or_404()
         context['portfolio'] = portfolio
+        context["projects"] = get_projects()
         context['skills'] = Keyword.group_by_skill(portfolio.keywords.all())
         return context
 
