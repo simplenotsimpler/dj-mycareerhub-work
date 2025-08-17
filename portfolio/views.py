@@ -7,6 +7,7 @@ from portfolio.models import Portfolio
 
 # TODO: style templates - not sure if want Bootstrap, my current CSS or some combo
 
+
 class PortfolioView(TemplateView):
     template_name = 'portfolio/portfolio.html'
 
@@ -19,8 +20,18 @@ class PortfolioView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         portfolio = self.get_object_or_404()
-        context['portfolio'] = portfolio
-        context["projects"] = get_projects()
-        context['skills'] = Keyword.group_by_skill(portfolio.keywords.all())
-        return context
+        # context['portfolio'] = portfolio
+        # context["projects"] = get_projects()
+        # context['skills'] = Keyword.group_by_skill(portfolio.keywords.all())
 
+        context.update({
+            "portfolio": portfolio,
+            "basics": portfolio.basics,
+            "about_hero": portfolio.about_hero,
+            "navigation": portfolio.navigation,
+            "quote": portfolio.quote,
+            "social_profiles": portfolio.social_profiles.all(),
+            "projects": get_projects(),
+            "skills": Keyword.group_by_skill(portfolio.keywords.all()),
+        })
+        return context
