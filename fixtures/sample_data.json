@@ -436,7 +436,8 @@
       "seo_config": 1,
       "basics": 1,
       "about_hero": 1,
-      "quote": 1
+      "quote": 1,
+      "navigation": 1
     }
   },
   {
@@ -484,6 +485,56 @@
       "slug": "projects",
       "order": 2,
       "navigation": 1
+    }
+  },
+
+  {
+    "model": "portfolio.portfolio_keywords",
+    "pk": 1,
+    "fields": {
+      "portfolio": 1,
+      "keyword": 3
+    }
+  },
+  {
+    "model": "portfolio.portfolio_keywords",
+    "pk": 2,
+    "fields": {
+      "portfolio": 1,
+      "keyword": 4
+    }
+  },
+  {
+    "model": "portfolio.portfolio_keywords",
+    "pk": 3,
+    "fields": {
+      "portfolio": 1,
+      "keyword": 5
+    }
+  },
+  {
+    "model": "portfolio.portfolio_keywords",
+    "pk": 4,
+    "fields": {
+      "portfolio": 1,
+      "keyword": 6
+    }
+  },
+
+  {
+    "model": "portfolio.portfolio_social_profiles",
+    "pk": 1,
+    "fields": {
+      "portfolio": 1,
+      "socialprofile": 1
+    }
+  },
+  {
+    "model": "portfolio.portfolio_social_profiles",
+    "pk": 2,
+    "fields": {
+      "portfolio": 1,
+      "socialprofile": 2
     }
   }
 ]
