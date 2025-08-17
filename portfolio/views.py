@@ -27,6 +27,7 @@ class PortfolioView(TemplateView):
         context.update({
             "portfolio": portfolio,
             "basics": portfolio.basics,
+            "seo": portfolio.seo_config,
             "about_hero": portfolio.about_hero,
             "navigation": portfolio.navigation,
             "quote": portfolio.quote,
