@@ -91,7 +91,7 @@
       "employment_type": 1,
       "start_date": "2010-01-01",
       "end_date": null,
-      "is_current_position": true,
+      "is_current": true,
       "salary_from": "0.00",
       "salary_to": "0.00",
       "salary_per": 6,
@@ -112,7 +112,7 @@
       "employment_type": 5,
       "start_date": "2005-01-01",
       "end_date": "2009-12-31",
-      "is_current_position": false,
+      "is_current": false,
       "salary_from": "0.00",
       "salary_to": "0.00",
       "salary_per": 6,
@@ -133,7 +133,7 @@
       "employment_type": 1,
       "start_date": "2000-01-01",
       "end_date": "2004-12-31",
-      "is_current_position": false,
+      "is_current": false,
       "salary_from": "0.00",
       "salary_to": "0.00",
       "salary_per": 6,
@@ -265,11 +265,11 @@
     "pk": 1,
     "fields": {
       "full_name": "Bruce Wayne",
-      "display_name": "Bruce Wayne",
-      "basics_website": "https://www.wayneenterprises.com",
-      "basics_email": "bruce@wayneenterprises.com",
+      "public_display_name": "Bruce Wayne",
+      "website": "https://www.wayneenterprises.com",
+      "email": "bruce@wayneenterprises.com",
       "address": 1,
-      "basics_phone": "555-1234"
+      "phone": "555-1234"
     }
   },
   {
