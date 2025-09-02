@@ -101,9 +101,10 @@ class AboutHero(SingletonModel):
     headline = models.CharField(
         max_length=50, help_text="Can be an animated typing introduction.")
     short_description = models.TextField(max_length=200, null=True, blank=True)
-    cta_text = models.CharField(max_length=25, null=True, blank=True)
+    cta_text = models.CharField(
+        max_length=25, null=True, blank=True, verbose_name="CTA text")
     cta_nav_item = models.ForeignKey(
-        NavItem, on_delete=models.SET_NULL, blank=True, null=True, related_name='about_hero')
+        NavItem, on_delete=models.SET_NULL, blank=True, null=True, related_name='about_hero', verbose_name="CTA nav item")
     visual = models.ImageField(upload_to='hero/', null=True, blank=True)
     visual_alt_text = models.CharField(max_length=20, null=True, blank=True)
 
