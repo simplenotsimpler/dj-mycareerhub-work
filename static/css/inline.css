@@ -1,3 +1,6 @@
-.original, .original ~ th {
+/* TODO: remove this - redundant w/ one in admin/css */
+
+.original,
+.original ~ th {
   display: none;
 }

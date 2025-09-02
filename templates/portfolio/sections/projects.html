@@ -1,0 +1,39 @@
+  {% load icons %}
+  <ul class="project-list">
+    {% for project in projects %}
+    <li>
+      <article class="project-card">
+        <header>
+          <div class="project-image-holder">
+            <img src={{project.openGraphImageUrl}} alt="" />
+          </div>          
+          <div>
+            <h1 class="project-card-title">{{project.name}}</h1>
+            <div class="project-card-text project-counts">
+              <div><span>{% icon 'star'%}</i> Star </span><span class="project-pill-badge">{{project.stargazerCount}}</span></div>
+              <div><span>{% icon 'eye'%}</i> Watch </span><span class="project-pill-badge">{{project.watchers.totalCount}}</span></div>
+              <div><span>{% icon 'projects'%}</i> Fork </span><span class="project-pill-badge">{{project.forks.totalCount}}</span></div>
+            </div>
+        </div>     
+        </header>
+        <section class="project-card-body">
+          <p class="project-card-text">{{project.description}}</p>
+        </section>
+
+        <footer class="project-card-footer">
+          <a href="{{ project.url }}" target="_blank" rel="noreferrer noopener" class="project-card-link">
+            {%icon 'projects' 'fa-fw project-card-icon' %}
+            <span>GitHub</span></a>
+                
+          {% if  project.homepageUrl%}
+          <a href="{{ project.homepageUrl }}" target="_blank" rel="noreferrer noopener" class="project-card-link">
+            {%icon 'globe' 'fa-fw project-card-icon' %}
+            <span>Demo</span>
+          </a>
+          {% endif %}     
+
+        </footer>
+      </article>
+    </li>      
+    {% endfor %}
+  </ul>

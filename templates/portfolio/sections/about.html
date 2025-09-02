@@ -1,0 +1,27 @@
+<div class="about-content">
+
+  <div class="hero-container">
+    <h2 class="headline">{{about_hero.headline}}</h2>
+    <div class="summary">
+      <p>{{about_hero.short_description}}</p>
+      <a class="btn btn-cta" href="#{{about_hero.cta_nav_item|lower}}">{{about_hero.cta_text}}</a>
+    </div>
+  </div>
+  {% comment %} quote {% endcomment %}
+  <div class="spotlight">
+    <div class="spotlight-img-holder">
+      <img src={{quote.quote_image.url}} alt="" />
+    </div>
+    <figure class="quote-container">
+      <q class="quote-text">{{quote.text}}</q>
+      <figcaption>
+        &mdash;{{quote.author}}
+        <cite>
+          <a href={{quote.citeHref}}target="_blank" rel="noopener noreferrer">
+            {{quote.citeName}}
+          </a>
+        </cite>
+      </figcaption>
+    </figure>
+  </div>
+</div>

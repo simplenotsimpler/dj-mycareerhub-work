@@ -1,0 +1,6 @@
+{% comment %} NOTE: section file names should be same as nav item title, e.g. About > about.html {% endcomment %}
+{% load icons %}
+<section class="main-section" id="{{section_heading|lower}}">
+  <h1 class="section-title">{% icon section_heading|lower %} {{ section_heading }}</h1>
+  {% include "portfolio/sections/"|add:section_heading|lower|add:".html" %}
+</section>

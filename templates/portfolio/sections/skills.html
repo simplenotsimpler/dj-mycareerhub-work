@@ -1,0 +1,7 @@
+<ul class="skills-list">
+    {% for skill, keywords in skills.items %}
+      <li class="skill-item">
+        <span class="skill-title">{{ skill }}:</span> {{keywords|join:" | "}}
+      </li>
+    {% endfor %}
+</ul>

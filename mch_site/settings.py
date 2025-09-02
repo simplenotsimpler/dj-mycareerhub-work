@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 INSTALLED_APPS += [
     'djmoney',
     "django_extensions",
+    "django_icons",
     'core.apps.CoreConfig',
     'common.apps.CommonConfig',
     'portfolio.apps.PortfolioConfig',
@@ -170,3 +171,22 @@ FIXTURE_DIRS = [BASE_DIR / "fixtures"]
 
 # https://docs.djangoproject.com/en/5.2/ref/settings/#login-url
 LOGIN_URL = reverse_lazy('admin:index')
+
+# MAYBE add project icon
+# https://fontawesome.com/icons/diagram-project?s=solid
+DJANGO_ICONS = {
+    "ICONS": {
+        "about": {"name": "fa-solid fa-user"},
+        "projects": {"name": "fa-solid fa-code-branch"},
+        "skills": {"name": "fa-regular fa-lightbulb"},
+        "contact": {"name": "fa-solid fa-envelopes-bulk"},
+        "star": {"name": "fa-solid fa-star"},
+        "eye": {"name": "fa-solid fa-eye"},
+        "globe": {"name": "fa-solid fa-globe"},
+        "email": {"name": "fa-solid fa-envelope"},
+        "linkedin": {"name": "fa-brands fa-square-linkedin"},
+        "github": {"name": "fa-brands fa-square-github"},
+        "x": {"name": "fa-brands fa-x-twitter"},
+
+    },
+}

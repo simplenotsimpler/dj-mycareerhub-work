@@ -1,10 +1,51 @@
 {% load static %}
+{% load icons %}
 <!DOCTYPE html>
 <html lang="en">
-  
-  <body>    
-    <main>
-      Portfolio
+  <head>
+    <title>{{ seo.title|default:"My Portfolio" }}</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="{{ seo.description|default:'' }}">
+
+    {# Open Graph tags #}
+    <meta property="og:type" content="{{ seo.og_type|default:'website' }}">
+    <meta property="og:title" content="{{ seo.title|default:'' }}">
+    <meta property="og:description" content="{{ seo.description|default:'' }}">
+    {% if seo.og_imgurl %}
+      <meta property="og:image" content="{{ seo.og_imgurl }}">
+    {% elif seo.logo %}
+      <meta property="og:image" content="{{ seo.logo.url }}">
+    {% endif %}
+
+    {# Twitter Card #}
+    {% if seo.twitter_card_type %}
+      <meta name="twitter:card" content="{{ seo.twitter_card_type.type }}">
+    {% else %}
+      <meta name="twitter:card" content="summary_large_image">
+    {% endif %}
+
+    {# Favicon #}
+    {% if seo.logo %}
+      <link rel="icon" href="{{ seo.logo.url }}" type="image/png" />
+    {% else %}
+      <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png" />
+    {% endif %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="{% static 'portfolio/css/portfolio.css' %}">
+  </head> 
+  <body>
+    {% include "portfolio/layout/nav_header.html" %}
+    <main class="container">
+      {% for nav_item in navigation.nav_items.all  %}
+        {% include "portfolio/layout/section.html" with section_heading=nav_item.title %}      
+      {% endfor %}      
     </main>
+    
+    <script src="{% static 'portfolio/js/portfolio.js' %}"></script>
   </body>
 </html>

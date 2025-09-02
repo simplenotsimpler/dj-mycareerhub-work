@@ -5,9 +5,6 @@ from common.github import get_projects
 from core.models import Keyword
 from portfolio.models import Portfolio
 
-# TODO: style templates - not sure if want Bootstrap, my current CSS or some combo
-
-
 class PortfolioView(TemplateView):
     template_name = 'portfolio/portfolio.html'
 

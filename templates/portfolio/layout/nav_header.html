@@ -1,0 +1,23 @@
+<div class="nav-header">
+  <nav class="nav-bar">
+    <a href="#" class="brand-name">
+      <div class="branding">
+        <img src="{{seo.logo.url}}" width="60px" height="60px" alt="logo" aria-hidden="true" class="logo-image">      
+        {{ seo.title |default:"My Portfolio" }}
+      </div>
+    </a>    
+
+    <ul class="nav-menu">
+      {% for item in navigation.nav_items.all %}
+        <li class="nav-item">
+          <a class="nav-menu-link" href="#{{ item.slug }}">{{ item.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </nav>
+</div>
