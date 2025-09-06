@@ -7,10 +7,6 @@ from core.models import Basics, Education, Job, Keyword, SocialProfile
 '''
   NOTE: models originally developed in the dj-mch-test-resume repo
 '''
-
-# TODO: add sample resume fixture data
-
-
 class Resume(models.Model):
     name = models.CharField(max_length=125, unique=True)
     professional_profile = models.TextField(null=True, blank=True)
