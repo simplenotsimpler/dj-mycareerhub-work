@@ -134,7 +134,7 @@ class Portfolio(SingletonModel):
     )
     seo_config = models.OneToOneField(
         SEOConfig, on_delete=models.SET_NULL, null=True,  related_name='portfolio', )
-    # basics is just in case want to add public display name or something
+    # basics is just in case want to add public display name, etc.
     basics = models.OneToOneField(
         Basics, on_delete=models.SET_NULL, null=True, related_name='portfolio', )
     about_hero = models.OneToOneField(
@@ -161,6 +161,12 @@ class Portfolio(SingletonModel):
         return f"Portfolio {self.pk or 'New'}"
 
 
-# TODO ContactUs/ContactMe
-# https://www.twilio.com/en-us/blog/developers/community/build-contact-form-python-django-twilio-sendgrid
-# possible also reCaptcha
+class ContactSubmission(models.Model):
+    name = models.CharField(max_length=125)
+    email = models.EmailField()
+    phone = models.CharField(max_length=50, blank=True, null=True)
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} – {self.email}"

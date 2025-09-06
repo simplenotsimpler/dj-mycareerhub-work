@@ -190,3 +190,26 @@ DJANGO_ICONS = {
 
     },
 }
+
+# EMAIL CONFIG
+# Common email settings
+# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
+# CONTACT_FORM_RECIPIENTS = config(
+#     'CONTACT_FORM_RECIPIENTS',
+#     cast=lambda v: [s.strip() for s in v.split(',')]
+# )
+
+# generic place holder. fetch dynamically in the view
+DEFAULT_FROM_EMAIL = 'no-reply@example.com'
+CONTACT_FORM_RECIPIENTS = ['no-reply@example.com']
+
+# Development email backend (console)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Production email backend (uncomment when ready)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = config('EMAIL_HOST')
+# EMAIL_PORT = config('EMAIL_PORT', cast=int)
+# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
