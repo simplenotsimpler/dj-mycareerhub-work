@@ -9,10 +9,12 @@ django-icons==25.2
 django-money==3.5.4
 docxcompose==1.4.0
 docxtpl==0.20.1
+gunicorn==23.0.0
 idna==3.10
 Jinja2==3.1.6
 lxml==6.0.0
 MarkupSafe==3.0.2
+packaging==25.0
 pillow==11.2.1
 psycopg2==2.9.10
 py-moneyed==3.0
