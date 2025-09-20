@@ -1,8 +1,9 @@
+import logging
+
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import redirect
 from django.urls import reverse
-from django.http import HttpResponseRedirect
 from django.views.generic import TemplateView
 
 from common.github import get_projects
@@ -11,6 +12,9 @@ from portfolio.models import Portfolio
 
 from .forms import ContactSubmissionForm
 from django.core.mail import EmailMessage
+
+# Set up logger
+logger = logging.getLogger(__name__)
 
 
 class PortfolioView(TemplateView):
@@ -50,23 +54,43 @@ class PortfolioView(TemplateView):
         if form.is_valid():
             submission = form.save()
 
+            # Log form submission
+            logger.info(
+                f"Contact form submitted by {submission.name} ({submission.email})")
+
             # Prepare the email
             subject = f'Contact from {submission.name}'
             message = f"You received a new contact message from {submission.name} <{submission.email}>:\n\n{submission.message}"
             from_email = context['basics'].email
             recipient_list = [context['basics'].email]
 
-            email = EmailMessage(
-                subject=subject,
-                body=message,
-                from_email=from_email,
-                to=recipient_list,
-                # allows developer to reply directly
-                reply_to=[submission.email],
-            )
-            email.send(fail_silently=False)
+            # email = EmailMessage(
+            #     subject=subject,
+            #     body=message,
+            #     from_email=from_email,
+            #     to=recipient_list,
+            #     # allows developer to reply directly
+            #     reply_to=[submission.email],
+            # )
+            # email.send(fail_silently=False)
+            try:
+                email = EmailMessage(
+                    subject=subject,
+                    body=message,
+                    from_email=from_email,
+                    to=recipient_list,
+                    # allows developer to reply directly
+                    reply_to=[submission.email],
+                )
+                email.send(fail_silently=False)
+                logger.info(f"Email sent successfully to {recipient_list}")
 
-            messages.success(request, "Thank you! Your message has been sent.")            
+                messages.success(request, "Thank you! Your message has been sent.")
+
+            except Exception as e:
+                logger.error(f"Error sending email: {e}")
+                messages.error(request, "There was an error sending your message. Please try again later.")
+
 
             # Redirect to GET to prevent form resubmission. This resets form.
             return redirect(reverse('portfolio-home'))

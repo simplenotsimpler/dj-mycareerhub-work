@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 from decouple import config
 from django.urls import reverse_lazy
+import logging
+
+# NOTE: rate limiting should be done via reverse proxy webserver, e.g. Nginx which is global
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +25,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a)9bdo*^7so*2gu@69asrrhe6otpkyt91s&m)3w%b!tc*@q#pm'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS', default='localhost,127.0.0.1').split(',')
 
 
 # Application definition
@@ -191,25 +196,67 @@ DJANGO_ICONS = {
     },
 }
 
-# EMAIL CONFIG
-# Common email settings
-# DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
-# CONTACT_FORM_RECIPIENTS = config(
-#     'CONTACT_FORM_RECIPIENTS',
-#     cast=lambda v: [s.strip() for s in v.split(',')]
-# )
+# Logging setup
+# NOTE: only used for logging the contact form. set up for use in dev & production
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '[{levelname}] {asctime} {name}: {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'file': {
+            'level': config('LOGGING_LEVEL', default='INFO'),
+            'class': 'logging.FileHandler',
+            'filename': config('LOGGING_FILENAME', default='logs/site.log'),
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': config('LOGGING_LEVEL', default='INFO'),
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['file', 'console'],
+        'level': config('LOGGING_LEVEL', default='INFO'),
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file', 'console'],
+            'level': config('LOGGING_LEVEL', default='INFO'),
+            'propagate': True,
+        },
+    },
+}
 
-# generic place holder. fetch dynamically in the view
-DEFAULT_FROM_EMAIL = 'no-reply@example.com'
-CONTACT_FORM_RECIPIENTS = ['no-reply@example.com']
+# Only apply the following settings if DEBUG is False (for production)
+if not DEBUG:
+
+    # Security settings
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    # HTTP Strict Transport Security (HSTS)
+    SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDS', default=3600, cast=int)
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+
+    # Clickjacking Protection
+    X_FRAME_OPTIONS = 'DENY'
+
+    # Production email backend
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = config('EMAIL_HOST')
+    EMAIL_PORT = config('EMAIL_PORT', cast=int)
+    EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+    EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
+
 
 # Development email backend (console)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-# Production email backend (uncomment when ready)
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = config('EMAIL_HOST')
-# EMAIL_PORT = config('EMAIL_PORT', cast=int)
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
