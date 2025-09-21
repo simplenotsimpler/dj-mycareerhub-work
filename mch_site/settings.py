@@ -14,6 +14,7 @@ from pathlib import Path
 from decouple import config
 from django.urls import reverse_lazy
 
+
 '''NOTE: the following should be done via the reverse proxy server, e.g. Nginx
  - rate limiting
  - restrict admin by IP
@@ -234,6 +235,18 @@ LOGGING = {
     },
 }
 
+# have to have this here so processes during setup. otherwise, app not loaded yet errors.
+# Parse ADMINS from .env
+
+
+def parse_admins(admins_str):
+    return [
+        tuple(admin.strip().split(':', 1))
+        for admin in admins_str.split(',')
+        if ':' in admin
+    ]
+
+
 # Only apply the following settings if DEBUG is False (for production)
 if not DEBUG:
 
@@ -257,6 +270,12 @@ if not DEBUG:
     EMAIL_HOST_USER = config('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
     EMAIL_USE_TLS = config('EMAIL_USE_TLS', cast=bool, default=True)
+
+    # Admin stuff
+    ADMINS = parse_admins(config('ADMINS', default=''))
+    MANAGERS = ADMINS
+
+    SERVER_EMAIL = config('SERVER_EMAIL')
 
 
 # Development email backend (console)

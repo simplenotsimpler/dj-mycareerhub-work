@@ -59,7 +59,8 @@ def register_current_app_models():
     current_module = inspect.getmodule(inspect.stack()[1][0])
     app_config = apps.get_containing_app_config(current_module.__name__)
     if not app_config:
-        raise RuntimeError(f"Could not determine app for module {current_module.__name__}")
+        raise RuntimeError(
+            f"Could not determine app for module {current_module.__name__}")
 
     inline_models = get_registered_inline_models()
     app_models = app_config.get_models()
@@ -170,3 +171,6 @@ class ReadOnlyAdminMixin:
 
 class StaffRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_required = 'is_staff'
+
+
+
