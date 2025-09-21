@@ -7,6 +7,11 @@ from django.contrib.admin.options import InlineModelAdmin
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.db import models
 from django.forms import Textarea
+from django.core.exceptions import ValidationError
+import os
+import magic
+
+from PIL import Image
 
 '''
     HELPERS
@@ -99,6 +104,67 @@ def format_date_display(value, date_label="Present"):
     return ''
 
 
+def validate_maximum_size(width=None, height=None):
+    # https://odwyer.software/blog/how-to-validate-django-imagefield-dimensions
+    # does not work - receive error ValueError: Could not find function validator in common.utils.
+    def validator(image):
+        error = False
+        if width is not None and image.width > width:
+            error = True
+        if height is not None and image.height > height:
+            error = True
+        if error:
+            raise ValidationError(
+                [f'Size should be less than {width} x {height} pixels.']
+            )
+
+    return validator
+
+
+# def validate_favicon(file):
+#     # https://stackoverflow.com/questions/3648421/only-accept-a-certain-file-type-in-filefield-server-side
+#     valid_mime_types = {
+#         '.ico': 'image/x-icon',
+#         '.png': 'image/png',
+#         '.svg': 'image/svg+xml',
+#     }
+#     valid_sizes = [(16, 16), (32, 32), (64, 64)]
+
+#     ext = os.path.splitext(file.name.lower())[1]
+#     if ext not in valid_mime_types:
+#         raise ValidationError(
+#             'Invalid file extension. Allowed: .ico, .png, .svg')
+
+#     mime_type = magic.from_buffer(file.read(2048), mime=True)
+#     file.seek(0)
+
+#     if mime_type != valid_mime_types[ext]:
+#         raise ValidationError('Unsupported file type. Must be ICON, PNG or SVG')
+
+#     if ext in ['.ico', '.png']:
+#         img = Image.open(file)
+#         if img.size not in valid_sizes:
+#             raise ValidationError('Image must be 16x16, 32x32, or 64x64.')
+#         file.seek(0)
+
+def validate_favicon(image):
+    allowed_mime_type = 'image/png'
+    allowed_sizes = [(32, 32), (64, 64)]
+
+    if not image.name.lower().endswith('.png'):
+        raise ValidationError('Only PNG files are allowed.')
+
+    mime_type = magic.from_buffer(image.read(2048), mime=True)
+    image.seek(0)
+    if mime_type != allowed_mime_type:
+        raise ValidationError('File content must be a valid PNG image.')
+
+    img = Image.open(image)
+    if img.size not in allowed_sizes:
+        raise ValidationError('Favicon must be exactly 32x32 or 64x64 pixels.')
+
+
+
 '''
     MIXINS
 '''
@@ -171,6 +237,3 @@ class ReadOnlyAdminMixin:
 
 class StaffRequiredMixin(LoginRequiredMixin, PermissionRequiredMixin):
     permission_required = 'is_staff'
-
-
-
