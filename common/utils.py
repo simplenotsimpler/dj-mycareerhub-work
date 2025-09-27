@@ -8,7 +8,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.db import models
 from django.forms import Textarea
 from django.core.exceptions import ValidationError
-import os
 import magic
 
 from PIL import Image
