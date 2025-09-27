@@ -21,6 +21,7 @@ TBD
 - Resume format is strictly ATS-compliant. Hence, this not concerned with having multiple templates.
 - Portfolio is the public facing part of the site.
 - Because I am the only user logging in, I have opted to keep the authentication simple and secure the site in other ways.
+- ChatGPT has been used for research and assisting with code development to solve specific problems. 
 
 ## Why Django?
 
