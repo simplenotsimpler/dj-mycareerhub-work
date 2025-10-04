@@ -1,0 +1,491 @@
+[
+  {
+    "model": "core.address",
+    "pk": 1,
+    "fields": {
+      "address_line_1": "1007 Mountain Drive",
+      "address_line_2": null,
+      "address_line_3": null,
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07001"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 2,
+    "fields": {
+      "address_line_1": "123 Tech Ave",
+      "address_line_2": null,
+      "address_line_3": null,
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07002"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 3,
+    "fields": {
+      "address_line_1": "500 University Way",
+      "address_line_2": null,
+      "address_line_3": null,
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07003"
+    }
+  },
+  {
+    "model": "core.address",
+    "pk": 4,
+    "fields": {
+      "address_line_1": "1 Foundation Plaza",
+      "address_line_2": null,
+      "address_line_3": null,
+      "city": "Gotham",
+      "region": "New Jersey",
+      "postal_code": "07004"
+    }
+  },
+  {
+    "model": "core.basics",
+    "pk": 1,
+    "fields": {
+      "full_name": "Bruce Wayne",
+      "public_display_name": "Bruce Wayne",
+      "website": "https://www.wayneenterprises.com",
+      "email": "bruce@wayneenterprises.com",
+      "phone": "555-1234",
+      "address": 1
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 1,
+    "fields": {
+      "full_name": "Alfred Pennyworth",
+      "position": "Butler",
+      "phone": "555-0001",
+      "fax": null,
+      "email": "alfred@wayneenterprises.com",
+      "linkedin": null,
+      "known_since": "1980-01-01",
+      "current_reference": true,
+      "background_check": true,
+      "notes": "Trusted lifelong assistant and confidant.",
+      "relationship": 1,
+      "org": 1,
+      "referral_org": 1,
+      "relationship_is_former": false
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 2,
+    "fields": {
+      "full_name": "Dick Grayson",
+      "position": "Security Consultant",
+      "phone": "555-0002",
+      "fax": null,
+      "email": "dick@wayneenterprises.com",
+      "linkedin": null,
+      "known_since": "2000-01-01",
+      "current_reference": false,
+      "background_check": true,
+      "notes": "Former ward and current associate.",
+      "relationship": 3,
+      "org": 1,
+      "referral_org": 1,
+      "relationship_is_former": false
+    }
+  },
+  {
+    "model": "core.contact",
+    "pk": 3,
+    "fields": {
+      "full_name": "Lucius Fox",
+      "position": "President, Fox Technologies",
+      "phone": "555-0003",
+      "fax": null,
+      "email": "lucius@foxtech.com",
+      "linkedin": null,
+      "known_since": "1995-01-01",
+      "current_reference": true,
+      "background_check": true,
+      "notes": "Former supervisor and trusted executive.",
+      "relationship": 2,
+      "org": 2,
+      "referral_org": 2,
+      "relationship_is_former": false
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 4,
+    "fields": {
+      "degree": "Executive Training Certificate",
+      "field_of_study": "Strategic Planning",
+      "concentration": null,
+      "start_date": "2025-07-14",
+      "end_date": null,
+      "note": "",
+      "score": null,
+      "scale": 4.0,
+      "courses_only": false,
+      "address": 3,
+      "institution": 3,
+      "is_current": true
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 1,
+    "fields": {
+      "degree": "Bachelor of Science",
+      "field_of_study": "Business Administration",
+      "concentration": "Finance",
+      "start_date": "1995-08-15",
+      "end_date": "1999-05-15",
+      "note": "Graduated with honors.",
+      "score": 3.9,
+      "scale": 4.0,
+      "courses_only": false,
+      "address": 3,
+      "institution": 3,
+      "is_current": false
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 2,
+    "fields": {
+      "degree": "Master of Business Administration",
+      "field_of_study": "Corporate Strategy",
+      "concentration": null,
+      "start_date": "2000-08-15",
+      "end_date": "2002-05-15",
+      "note": "",
+      "score": 4.0,
+      "scale": 4.0,
+      "courses_only": false,
+      "address": 3,
+      "institution": 3,
+      "is_current": false
+    }
+  },
+  {
+    "model": "core.education",
+    "pk": 3,
+    "fields": {
+      "degree": "Executive Training Certificate",
+      "field_of_study": "Leadership Development",
+      "concentration": null,
+      "start_date": "2003-01-10",
+      "end_date": "2003-12-20",
+      "note": "One-year executive development program",
+      "score": null,
+      "scale": 4.0,
+      "courses_only": false,
+      "address": 3,
+      "institution": 3,
+      "is_current": false
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 4,
+    "fields": {
+      "highlight_text": "Test",
+      "is_duty": false,
+      "job": 4
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 1,
+    "fields": {
+      "highlight_text": "Led global expansion and acquisition strategy.",
+      "is_duty": true,
+      "job": 1
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 2,
+    "fields": {
+      "highlight_text": "Introduced enterprise-wide innovation program.",
+      "is_duty": true,
+      "job": 2
+    }
+  },
+  {
+    "model": "core.highlight",
+    "pk": 3,
+    "fields": {
+      "highlight_text": "Oversaw distribution of over $100M in charitable funds.",
+      "is_duty": true,
+      "job": 3
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 1,
+    "fields": {
+      "position": "Chief Executive Officer",
+      "summary": "Lead Wayne Enterprises to global success across multiple industries.",
+      "start_date": "2010-01-01",
+      "end_date": null,
+      "is_current": true,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
+      "reason_for_leaving": null,
+      "okay_to_contact": false,
+      "address": 1,
+      "employment_type": 1,
+      "location_type": 3,
+      "client": null,
+      "org": 1,
+      "salary_per": 6,
+      "position_supplement": null
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 2,
+    "fields": {
+      "position": "Strategic Advisor",
+      "summary": "Provided innovation and leadership guidance to Fox Technologies.",
+      "start_date": "2005-01-01",
+      "end_date": "2009-12-31",
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
+      "reason_for_leaving": "Transitioned to CEO at Wayne Enterprises",
+      "okay_to_contact": true,
+      "address": 2,
+      "employment_type": 5,
+      "location_type": 1,
+      "client": null,
+      "org": 2,
+      "salary_per": 6,
+      "position_supplement": null
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 3,
+    "fields": {
+      "position": "Philanthropy Chair",
+      "summary": "Led strategic community investments through the Wayne Foundation.",
+      "start_date": "2000-01-01",
+      "end_date": "2004-12-31",
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
+      "reason_for_leaving": "Focused on enterprise leadership",
+      "okay_to_contact": true,
+      "address": 4,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": 4,
+      "salary_per": 6,
+      "position_supplement": null
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 4,
+    "fields": {
+      "position": "Gadget Guru",
+      "summary": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      "start_date": "1999-01-15",
+      "end_date": "2000-08-11",
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": null,
+      "salary_to_currency": "USD",
+      "salary_to": null,
+      "reason_for_leaving": null,
+      "okay_to_contact": true,
+      "address": 2,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": 2,
+      "salary_per": 1,
+      "position_supplement": "Product Tester"
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 5,
+    "fields": {
+      "position": "test dates",
+      "summary": "",
+      "start_date": "2025-05-15",
+      "end_date": null,
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": null,
+      "salary_to_currency": "USD",
+      "salary_to": null,
+      "reason_for_leaving": null,
+      "okay_to_contact": true,
+      "address": null,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": null,
+      "salary_per": 1,
+      "position_supplement": null
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 7,
+    "fields": {
+      "name": "Communications",
+      "skill": 3
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 1,
+    "fields": {
+      "name": "Strategic Planning",
+      "skill": 1
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 2,
+    "fields": {
+      "name": "Executive Leadership",
+      "skill": 1
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 3,
+    "fields": {
+      "name": "Technology Strategy",
+      "skill": 2
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 4,
+    "fields": {
+      "name": "Innovation Management",
+      "skill": 2
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 5,
+    "fields": {
+      "name": "Social Impact",
+      "skill": 3
+    }
+  },
+  {
+    "model": "core.keyword",
+    "pk": 6,
+    "fields": {
+      "name": "Grantmaking",
+      "skill": 3
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 1,
+    "fields": {
+      "name": "Wayne Enterprises",
+      "short_name": "Wayne Ent.",
+      "website": "https://www.wayneenterprises.com",
+      "note": null,
+      "address": 1
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 2,
+    "fields": {
+      "name": "Fox Technologies",
+      "short_name": "Fox Tech",
+      "website": "https://www.foxtech.com",
+      "note": null,
+      "address": 2
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 3,
+    "fields": {
+      "name": "Gotham University",
+      "short_name": "Gotham U",
+      "website": "https://www.gothamu.edu",
+      "note": null,
+      "address": 3
+    }
+  },
+  {
+    "model": "core.organization",
+    "pk": 4,
+    "fields": {
+      "name": "Wayne Foundation",
+      "short_name": "WF",
+      "website": "https://www.waynefoundation.org",
+      "note": null,
+      "address": 4
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 1,
+    "fields": {
+      "name": "Leadership"
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 2,
+    "fields": {
+      "name": "Technology"
+    }
+  },
+  {
+    "model": "core.skill",
+    "pk": 3,
+    "fields": {
+      "name": "Philanthropy"
+    }
+  },
+  {
+    "model": "core.socialprofile",
+    "pk": 2,
+    "fields": {
+      "network": "X",
+      "username": "brucewayne",
+      "url": "https://x.com/brucewayne",
+      "basics": 1
+    }
+  },
+  {
+    "model": "core.socialprofile",
+    "pk": 1,
+    "fields": {
+      "network": "LinkedIn",
+      "username": "brucewayne",
+      "url": "https://linkedin.com/in/brucewayne",
+      "basics": 1
+    }
+  }
+]

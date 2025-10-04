@@ -1,0 +1,102 @@
+[
+  {
+    "model": "resumes.resume",
+    "pk": 1,
+    "fields": {
+      "name": "resume 1",
+      "professional_profile": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      "is_public": false,
+      "basics_id": 1,
+      "created_at": "2025-07-26T21:56:33.328Z",
+      "updated_at": "2025-07-26T21:56:33.346Z"
+    }
+  },
+  {
+    "model": "resumes.resume_educations",
+    "pk": 1,
+    "fields": {
+      "resume_id": 1,
+      "education_id": 1
+    }
+  },
+  {
+    "model": "resumes.resume_educations",
+    "pk": 2,
+    "fields": {
+      "resume_id": 1,
+      "education_id": 2
+    }
+  },
+  {
+    "model": "resumes.resume_educations",
+    "pk": 4,
+    "fields": {
+      "resume_id": 1,
+      "education_id": 3
+    }
+  },
+  {
+    "model": "resumes.resume_educations",
+    "pk": 5,
+    "fields": {
+      "resume_id": 1,
+      "education_id": 4
+    }
+  },
+  {
+    "model": "resumes.resume_jobs",
+    "pk": 1,
+    "fields": {
+      "resume_id": 1,
+      "job_id": 1
+    }
+  },
+  {
+    "model": "resumes.resume_jobs",
+    "pk": 2,
+    "fields": {
+      "resume_id": 1,
+      "job_id": 2
+    }
+  },
+  {
+    "model": "resumes.resume_jobs",
+    "pk": 3,
+    "fields": {
+      "resume_id": 1,
+      "job_id": 3
+    }
+  },
+  {
+    "model": "resumes.resume_jobs",
+    "pk": 4,
+    "fields": {
+      "resume_id": 1,
+      "job_id": 4
+    }
+  },
+  {
+    "model": "resumes.resume_keywords",
+    "pk": 1,
+    "fields": {
+      "resume_id": 1,
+      "keyword_id": 1
+    }
+  },
+  {
+    "model": "resumes.resume_keywords",
+    "pk": 2,
+    "fields": {
+      "resume_id": 1,
+      "keyword_id": 2
+    }
+  },
+  {
+    "model": "resumes.resume_keywords",
+    "pk": 3,
+    "fields": {
+      "resume_id": 1,
+      "keyword_id": 3
+    }
+  }
+]
