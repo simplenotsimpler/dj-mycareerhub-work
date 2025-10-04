@@ -88,5 +88,33 @@
   },
   { "model": "core.locationtype", "pk": 1, "fields": { "name": "Onsite" } },
   { "model": "core.locationtype", "pk": 2, "fields": { "name": "Remote" } },
-  { "model": "core.locationtype", "pk": 3, "fields": { "name": "Hybrid" } }
+  { "model": "core.locationtype", "pk": 3, "fields": { "name": "Hybrid" } },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 1,
+    "fields": {
+      "type": "summary"
+    }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 2,
+    "fields": {
+      "type": "summary_large_image"
+    }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 3,
+    "fields": {
+      "type": "app"
+    }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 4,
+    "fields": {
+      "type": "player"
+    }
+  }
 ]

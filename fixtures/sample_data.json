@@ -369,34 +369,6 @@
     }
   },
   {
-    "model": "portfolio.twittercardtype",
-    "pk": 1,
-    "fields": {
-      "type": "summary"
-    }
-  },
-  {
-    "model": "portfolio.twittercardtype",
-    "pk": 2,
-    "fields": {
-      "type": "summary_large_image"
-    }
-  },
-  {
-    "model": "portfolio.twittercardtype",
-    "pk": 3,
-    "fields": {
-      "type": "app"
-    }
-  },
-  {
-    "model": "portfolio.twittercardtype",
-    "pk": 4,
-    "fields": {
-      "type": "player"
-    }
-  },
-  {
     "model": "portfolio.seoconfig",
     "pk": 1,
     "fields": {
