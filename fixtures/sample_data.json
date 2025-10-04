@@ -85,19 +85,22 @@
     "fields": {
       "position": "Chief Executive Officer",
       "summary": "Lead Wayne Enterprises to global success across multiple industries.",
-      "org": 1,
-      "client": null,
-      "address": 1,
-      "employment_type": 1,
       "start_date": "2010-01-01",
       "end_date": null,
       "is_current": true,
-      "salary_from": "0.00",
-      "salary_to": "0.00",
-      "salary_per": 6,
-      "location_type": 3,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
       "reason_for_leaving": null,
-      "okay_to_contact": false
+      "okay_to_contact": false,
+      "address": 1,
+      "employment_type": 1,
+      "location_type": 3,
+      "client": null,
+      "org": 1,
+      "salary_per": 6,
+      "position_supplement": null
     }
   },
   {
@@ -106,19 +109,22 @@
     "fields": {
       "position": "Strategic Advisor",
       "summary": "Provided innovation and leadership guidance to Fox Technologies.",
-      "org": 2,
-      "client": null,
-      "address": 2,
-      "employment_type": 5,
       "start_date": "2005-01-01",
       "end_date": "2009-12-31",
       "is_current": false,
-      "salary_from": "0.00",
-      "salary_to": "0.00",
-      "salary_per": 6,
-      "location_type": 1,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
       "reason_for_leaving": "Transitioned to CEO at Wayne Enterprises",
-      "okay_to_contact": true
+      "okay_to_contact": true,
+      "address": 2,
+      "employment_type": 5,
+      "location_type": 1,
+      "client": null,
+      "org": 2,
+      "salary_per": 6,
+      "position_supplement": null
     }
   },
   {
@@ -127,19 +133,70 @@
     "fields": {
       "position": "Philanthropy Chair",
       "summary": "Led strategic community investments through the Wayne Foundation.",
-      "org": 4,
-      "client": null,
-      "address": 4,
-      "employment_type": 1,
       "start_date": "2000-01-01",
       "end_date": "2004-12-31",
       "is_current": false,
-      "salary_from": "0.00",
-      "salary_to": "0.00",
-      "salary_per": 6,
-      "location_type": 1,
+      "salary_from_currency": "USD",
+      "salary_from": 0.0,
+      "salary_to_currency": "USD",
+      "salary_to": 0.0,
       "reason_for_leaving": "Focused on enterprise leadership",
-      "okay_to_contact": true
+      "okay_to_contact": true,
+      "address": 4,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": 4,
+      "salary_per": 6,
+      "position_supplement": null
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 4,
+    "fields": {
+      "position": "Gadget Guru",
+      "summary": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      "start_date": "1999-01-15",
+      "end_date": "2000-08-11",
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": null,
+      "salary_to_currency": "USD",
+      "salary_to": null,
+      "reason_for_leaving": null,
+      "okay_to_contact": true,
+      "address": 2,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": 2,
+      "salary_per": 1,
+      "position_supplement": "Product Tester"
+    }
+  },
+  {
+    "model": "core.job",
+    "pk": 5,
+    "fields": {
+      "position": "test dates",
+      "summary": "",
+      "start_date": "2025-05-15",
+      "end_date": null,
+      "is_current": false,
+      "salary_from_currency": "USD",
+      "salary_from": null,
+      "salary_to_currency": "USD",
+      "salary_to": null,
+      "reason_for_leaving": null,
+      "okay_to_contact": true,
+      "address": null,
+      "employment_type": 1,
+      "location_type": 1,
+      "client": null,
+      "org": null,
+      "salary_per": 1,
+      "position_supplement": null
     }
   },
   {
@@ -366,6 +423,26 @@
       "highlight_text": "Oversaw distribution of over $100M in charitable funds.",
       "job": 3,
       "is_duty": true
+    }
+  },
+  {
+    "model": "core.socialprofile",
+    "pk": 2,
+    "fields": {
+      "network": "X",
+      "username": "brucewayne",
+      "url": "https://x.com/brucewayne",
+      "basics": 1
+    }
+  },
+  {
+    "model": "core.socialprofile",
+    "pk": 1,
+    "fields": {
+      "network": "LinkedIn",
+      "username": "brucewayne",
+      "url": "https://linkedin.com/in/brucewayne",
+      "basics": 1
     }
   },
   {
