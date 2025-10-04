@@ -185,11 +185,11 @@
     "fields": {
       "title": "Bruce Wayne - Philanthropist, Entrepreneur",
       "description": "Official portfolio of Bruce Wayne, CEO of Wayne Enterprises. Innovating for a better Gotham.",
-      "logo": "seo/wayne-enterprises-logo.png",
+      "logo": "seo/dummy-logo.png",
       "og_type": "website",
       "og_imgurl": "https://wayneenterprises.com/images/og_image.jpg",
       "twitter_card_type_id": 2,
-      "favicon": ""
+      "favicon": "seo/dummy-favicon.png"
     }
   },
   {
