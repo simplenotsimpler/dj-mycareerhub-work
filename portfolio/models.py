@@ -127,6 +127,8 @@ class AboutHero(SingletonModel):
 
 
 class Portfolio(SingletonModel):
+    is_active = models.BooleanField(
+        verbose_name="Portfolio is active?", default=False)
     navigation = models.OneToOneField(
         Navigation,
         on_delete=models.SET_NULL,

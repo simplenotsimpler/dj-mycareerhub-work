@@ -1,8 +1,7 @@
 import logging
 
 from django.contrib import messages
-from django.http import Http404
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
@@ -20,19 +19,9 @@ logger = logging.getLogger(__name__)
 class PortfolioView(TemplateView):
     template_name = 'portfolio/portfolio.html'
 
-    def get_object_or_404(self):
-        obj = Portfolio.load()
-        if not obj:
-            raise Http404("Portfolio not found")
-        return obj
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        portfolio = self.get_object_or_404()
-        # context['portfolio'] = portfolio
-        # context["projects"] = get_projects()
-        # context['skills'] = Keyword.group_by_skill(portfolio.keywords.all())
-
+        portfolio = get_object_or_404(Portfolio, is_active=True)
         context.update({
             "portfolio": portfolio,
             "basics": portfolio.basics,
@@ -85,12 +74,13 @@ class PortfolioView(TemplateView):
                 email.send(fail_silently=False)
                 logger.info(f"Email sent successfully to {recipient_list}")
 
-                messages.success(request, "Thank you! Your message has been sent.")
+                messages.success(
+                    request, "Thank you! Your message has been sent.")
 
             except Exception as e:
                 logger.error(f"Error sending email: {e}")
-                messages.error(request, "There was an error sending your message. Please try again later.")
-
+                messages.error(
+                    request, "There was an error sending your message. Please try again later.")
 
             # Redirect to GET to prevent form resubmission. This resets form.
             return redirect(reverse('portfolio-home'))
