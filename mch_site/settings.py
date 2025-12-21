@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import json
 from pathlib import Path
 from decouple import config
 from django.urls import reverse_lazy
@@ -52,6 +53,7 @@ INSTALLED_APPS = [
 ]
 
 INSTALLED_APPS += [
+    'django_distill',
     'djmoney',
     "django_extensions",
     "django_icons",
@@ -283,3 +285,21 @@ if not DEBUG:
 
 # Development email backend (console)
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Distill settings
+# if publishing in current repo:
+# DISTILL_DIR = BASE_DIR / "docs"
+# if publishing to separate repo:
+DISTILL_DIR = config('DISTILL_DIR')
+
+# skip
+# see https://github.com/meeb/django-distill/?tab=readme-ov-file#optional-configuration-settings
+
+# https://stackoverflow.com/questions/31352317/how-to-pass-a-list-as-an-environment-variable
+# Posted by Martin Thoma, modified by community. See post 'Timeline' for change history
+# Retrieved 2025-12-20, License - CC BY-SA 4.0
+# use json loads to load the list from .env
+DISTILL_SKIP_STATICFILES_DIRS = json.loads(
+    config('DISTILL_SKIP_STATICFILES_DIRS'))
+
+STATIC_SITE_REPO_DIR = config('STATIC_SITE_REPO_DIR')
