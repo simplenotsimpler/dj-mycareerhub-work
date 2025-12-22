@@ -569,9 +569,11 @@ select:focus {
  *
  */
 
+/* Account for if contact form hidden */
+/* https://dev.to/musselmanth/the-dynamic-css-grid-configuration-ive-been-looking-for-1ogd */
 .contact-container {
   display: grid;
-  grid-template-columns: calc(50% - 2.5%) calc(50% - 2.5%);
+  grid-template-columns: repeat(auto-fit, minmax(calc(50% - 2.5%), 1fr));
   gap: 5%;
 }
 
