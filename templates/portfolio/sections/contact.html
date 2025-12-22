@@ -3,7 +3,7 @@
   <section class="contact-content">
     
     <p class="contact-CTA">Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.</p>    
-    <div class="contact-info">  
+    <div class="contact-info {{ is_local|yesno:"local-contact-info,''" }}">  
       <a href="mailto:{{basics.email}}" class="contact-link">{% icon 'email' 'fa-fw' %}{{basics.email}}</a>
       {% for profile in social_profiles %}
         <a href="{{profile.url}}" class="contact-link" target="_blank" rel="noreferrer noopener">{% icon profile.network|lower 'fa-fw' %}{{profile.username}}</a>
@@ -11,6 +11,7 @@
     </div>    
   </section>
 
+  {% if not is_local %}
   <section class="contact-form-holder">
     <h1 class="contact-title">Let’s Connect !!!</h1>
     {% if messages %}
@@ -74,3 +75,4 @@
       </div>
     </form>
   </section>
+  {% endif %}

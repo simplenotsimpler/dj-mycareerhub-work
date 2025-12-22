@@ -12,6 +12,8 @@ from portfolio.models import Portfolio
 from .forms import ContactSubmissionForm
 from django.core.mail import EmailMessage
 
+from django.conf import settings
+
 # Set up logger
 logger = logging.getLogger(__name__)
 
@@ -33,6 +35,7 @@ class PortfolioView(TemplateView):
             "projects": get_projects(),
             "skills": Keyword.group_by_skill(portfolio.keywords.all()),
             "form": ContactSubmissionForm(),
+            "is_local": settings.LOCAL,
         })
         return context
 

@@ -606,6 +606,12 @@ select:focus {
   margin-top: 5rem;
 }
 
+.local-contact-info {
+  flex-direction: row;
+  margin-top: 3rem;
+  padding-left: 0;
+}
+
 .contact-link {
   font-size: 1.75rem;
   line-height: 127%;
