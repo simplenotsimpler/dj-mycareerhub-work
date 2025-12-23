@@ -1,13 +1,114 @@
 [
   {
+    "model": "portfolio.twittercardtype",
+    "pk": 1,
+    "fields": { "type": "summary" }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 2,
+    "fields": { "type": "summary_large_image" }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 3,
+    "fields": { "type": "app" }
+  },
+  {
+    "model": "portfolio.twittercardtype",
+    "pk": 4,
+    "fields": { "type": "player" }
+  },
+  {
+    "model": "portfolio.seoconfig",
+    "pk": 1,
+    "fields": {
+      "title": "Bruce Wayne - Philanthropist, Entrepreneur",
+      "description": "Official portfolio of Bruce Wayne, CEO of Wayne Enterprises. Innovating for a better Gotham.",
+      "logo": "seo/dummy-logo.png",
+      "favicon": "seo/dummy-favicon.png",
+      "og_type": "website",
+      "og_imgurl": "https://wayneenterprises.com/images/og_image.jpg",
+      "twitter_card_type": 2
+    }
+  },
+  {
+    "model": "portfolio.quote",
+    "pk": 1,
+    "fields": {
+      "text": "It's not who I am underneath, but what I do that defines me.",
+      "author": "Bruce Wayne",
+      "cite_href": "https://www.imdb.com/title/tt0372784/quotes/qt0396926",
+      "cite_name": "Batman Begins (2005)",
+      "quote_image": "quote/bruce-wayne-portrait.jpeg",
+      "quote_image_alt_text": null
+    }
+  },
+  {
+    "model": "portfolio.navigation",
+    "pk": 1,
+    "fields": { "title": "Main Navigation" }
+  },
+  {
+    "model": "portfolio.navitem",
+    "pk": 1,
+    "fields": { "navigation": 1, "title": "About", "slug": "about", "order": 1 }
+  },
+  {
+    "model": "portfolio.navitem",
+    "pk": 2,
+    "fields": {
+      "navigation": 1,
+      "title": "Projects",
+      "slug": "projects",
+      "order": 2
+    }
+  },
+  {
+    "model": "portfolio.navitem",
+    "pk": 3,
+    "fields": {
+      "navigation": 1,
+      "title": "Skills",
+      "slug": "skills",
+      "order": 3
+    }
+  },
+  {
+    "model": "portfolio.navitem",
+    "pk": 4,
+    "fields": {
+      "navigation": 1,
+      "title": "Contact",
+      "slug": "contact",
+      "order": 4
+    }
+  },
+  {
+    "model": "portfolio.abouthero",
+    "pk": 1,
+    "fields": {
+      "headline": "Bruce Wayne — Building Gotham’s Future",
+      "short_description": "CEO of Wayne Enterprises, dedicated to innovation, philanthropy, and the revitalization of Gotham City.",
+      "cta_text": "Discover My Work",
+      "cta_nav_item": 2,
+      "visual": "",
+      "visual_alt_text": null
+    }
+  },
+  {
     "model": "portfolio.portfolio",
     "pk": 1,
     "fields": {
-      "about_hero_id": 1,
-      "basics_id": 1,
-      "navigation_id": 1,
-      "quote_id": 1,
-      "seo_config_id": 1
+      "is_active": true,
+      "navigation": 1,
+      "seo_config": 1,
+      "basics": 1,
+      "about_hero": 1,
+      "quote": 1,
+      "contact_cta": "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.",
+      "keywords": [3, 4, 5, 6],
+      "social_profiles": [2, 1]
     }
   },
   {
@@ -77,135 +178,14 @@
     }
   },
   {
-    "model": "portfolio.navigation",
-    "pk": 1,
+    "model": "portfolio.contactsubmission",
+    "pk": 7,
     "fields": {
-      "title": "Main Navigation"
-    }
-  },
-  {
-    "model": "portfolio.navitem",
-    "pk": 1,
-    "fields": {
-      "title": "About",
-      "slug": "about",
-      "order": 1,
-      "navigation_id": 1
-    }
-  },
-  {
-    "model": "portfolio.navitem",
-    "pk": 2,
-    "fields": {
-      "title": "Projects",
-      "slug": "projects",
-      "order": 2,
-      "navigation_id": 1
-    }
-  },
-  {
-    "model": "portfolio.navitem",
-    "pk": 3,
-    "fields": {
-      "title": "Skills",
-      "slug": "skills",
-      "order": 3,
-      "navigation_id": 1
-    }
-  },
-  {
-    "model": "portfolio.navitem",
-    "pk": 4,
-    "fields": {
-      "title": "Contact",
-      "slug": "contact",
-      "order": 4,
-      "navigation_id": 1
-    }
-  },
-  {
-    "model": "portfolio.abouthero",
-    "pk": 1,
-    "fields": {
-      "headline": "Bruce Wayne — Building Gotham’s Future",
-      "short_description": "CEO of Wayne Enterprises, dedicated to innovation, philanthropy, and the revitalization of Gotham City.",
-      "cta_text": "Discover My Work",
-      "visual": "",
-      "visual_alt_text": null,
-      "cta_nav_item_id": 2
-    }
-  },
-  {
-    "model": "portfolio.portfolio_keywords",
-    "pk": 1,
-    "fields": {
-      "portfolio_id": 1,
-      "keyword_id": 3
-    }
-  },
-  {
-    "model": "portfolio.portfolio_keywords",
-    "pk": 2,
-    "fields": {
-      "portfolio_id": 1,
-      "keyword_id": 4
-    }
-  },
-  {
-    "model": "portfolio.portfolio_keywords",
-    "pk": 3,
-    "fields": {
-      "portfolio_id": 1,
-      "keyword_id": 5
-    }
-  },
-  {
-    "model": "portfolio.portfolio_keywords",
-    "pk": 4,
-    "fields": {
-      "portfolio_id": 1,
-      "keyword_id": 6
-    }
-  },
-  {
-    "model": "portfolio.quote",
-    "pk": 1,
-    "fields": {
-      "text": "It's not who I am underneath, but what I do that defines me.",
-      "author": "Bruce Wayne",
-      "cite_href": "https://www.imdb.com/title/tt0372784/quotes/qt0396926",
-      "cite_name": "Batman Begins (2005)",
-      "quote_image": "quote/bruce-wayne-portrait.jpeg",
-      "quote_image_alt_text": null
-    }
-  },
-  {
-    "model": "portfolio.seoconfig",
-    "pk": 1,
-    "fields": {
-      "title": "Bruce Wayne - Philanthropist, Entrepreneur",
-      "description": "Official portfolio of Bruce Wayne, CEO of Wayne Enterprises. Innovating for a better Gotham.",
-      "logo": "seo/dummy-logo.png",
-      "og_type": "website",
-      "og_imgurl": "https://wayneenterprises.com/images/og_image.jpg",
-      "twitter_card_type_id": 2,
-      "favicon": "seo/dummy-favicon.png"
-    }
-  },
-  {
-    "model": "portfolio.portfolio_social_profiles",
-    "pk": 1,
-    "fields": {
-      "portfolio_id": 1,
-      "socialprofile_id": 1
-    }
-  },
-  {
-    "model": "portfolio.portfolio_social_profiles",
-    "pk": 2,
-    "fields": {
-      "portfolio_id": 1,
-      "socialprofile_id": 2
+      "name": "test",
+      "email": "test@test.com",
+      "phone": null,
+      "message": "test message",
+      "submitted_at": "2025-12-23T11:12:22.082Z"
     }
   }
 ]

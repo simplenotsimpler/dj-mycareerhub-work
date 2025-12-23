@@ -26,14 +26,15 @@ class PortfolioView(TemplateView):
         portfolio = get_object_or_404(Portfolio, is_active=True)
         context.update({
             "portfolio": portfolio,
-            "basics": portfolio.basics,
-            "seo": portfolio.seo_config,
-            "about_hero": portfolio.about_hero,
             "navigation": portfolio.navigation,
+            "seo": portfolio.seo_config,
+            "basics": portfolio.basics,
+            "about_hero": portfolio.about_hero,
             "quote": portfolio.quote,
-            "social_profiles": portfolio.social_profiles.all(),
             "projects": get_projects(),
             "skills": Keyword.group_by_skill(portfolio.keywords.all()),
+            "contact_cta": portfolio.contact_cta,
+            "social_profiles": portfolio.social_profiles.all(),
             "form": ContactSubmissionForm(),
             "is_local": settings.LOCAL,
         })

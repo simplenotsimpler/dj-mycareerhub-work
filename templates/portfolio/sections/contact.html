@@ -2,7 +2,7 @@
 <div class="contact-container">
   <section class="contact-content">
     
-    <p class="contact-CTA">Lorem ipsum dolor sit amet consectetur adipiscing elit. Sit amet consectetur adipiscing elit quisque faucibus ex. Adipiscing elit quisque faucibus ex sapien vitae pellentesque.</p>    
+    <p class="contact-CTA">{{contact_cta}}</p>    
     <div class="contact-info {{ is_local|yesno:"local-contact-info,''" }}">  
       <a href="mailto:{{basics.email}}" class="contact-link">{% icon 'email' 'fa-fw' %}{{basics.email}}</a>
       {% for profile in social_profiles %}

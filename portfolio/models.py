@@ -5,6 +5,8 @@ from common.singleton import SingletonModel
 from common.utils import validate_favicon
 from core.models import Basics, Keyword, SocialProfile
 
+# TODO: decide which data model add contact-CTA to or if create new model??
+
 
 class TwitterCardType(models.Model):
     # https://developer.x.com/en/docs/x-for-websites/cards/overview/abouts-cards
@@ -24,7 +26,8 @@ class SEOConfig(SingletonModel):
     title = models.CharField(max_length=50, help_text="Title/Site Name")
     description = models.TextField(blank=True, null=True)
     logo = models.ImageField(upload_to='seo/', blank=True)
-    favicon = models.FileField(upload_to='seo/', blank=True, help_text="sizes: 32x32, 64x64. file types: PNG", validators=[validate_favicon])
+    favicon = models.FileField(upload_to='seo/', blank=True,
+                               help_text="sizes: 32x32, 64x64. file types: PNG", validators=[validate_favicon])
     og_type = models.CharField(
         max_length=120, help_text="See object types in https://ogp.me/", default='website')
     og_imgurl = models.URLField(blank=True, null=True)
@@ -145,14 +148,15 @@ class Portfolio(SingletonModel):
         AboutHero, on_delete=models.SET_NULL, null=True, related_name='portfolio', )
     quote = models.OneToOneField(
         Quote, on_delete=models.SET_NULL, null=True, related_name='portfolio')
-    social_profiles = models.ManyToManyField(
-        SocialProfile,
-        blank=True,
-        related_name='portfolio'
-    )
     # skills pulled in via keywords
     keywords = models.ManyToManyField(
         Keyword,
+        blank=True,
+        related_name='portfolio'
+    )
+    contact_cta = models.TextField(blank=True, null=True)
+    social_profiles = models.ManyToManyField(
+        SocialProfile,
         blank=True,
         related_name='portfolio'
     )
