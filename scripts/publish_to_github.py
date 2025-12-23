@@ -13,15 +13,19 @@ from django.core.management import call_command
 
 import django
 import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(__file__, *[os.pardir] * 2)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
 django.setup()
 
+# TODO test at home when can use GitHub API
 
 # get the output dir from settings
 OUTPUT_DIR = getattr(settings, 'DISTILL_DIR', None)
 STATIC_SITE_REPO_DIR = getattr(settings, 'STATIC_SITE_REPO_DIR', None)
-LICENSE_FILE='./documentation/portfolio_docs/LICENSE'
-README_FILE='./documentation/portfolio_docs/README.md'
+LICENSE_FILE = '../documentation/portfolio_docs/LICENSE'
+README_FILE = '../documentation/portfolio_docs/README.md'
 
 # called based on signature in https://github.com/meeb/django-distill/blob/master/django_distill/management/commands/distill-local.py
 call_command("distill-local", OUTPUT_DIR,
@@ -36,16 +40,16 @@ if copy_docs.lower() in ["yes", "y"]:
     # copy license
     # https://builtin.com/data-science/copy-a-file-with-python
     try:
-      shutil.copy(LICENSE_FILE, STATIC_SITE_REPO_DIR)   
+        shutil.copy(LICENSE_FILE, STATIC_SITE_REPO_DIR)
 
-      # copy portfolio README  
-      shutil.copy(README_FILE,
+        # copy portfolio README
+        shutil.copy(README_FILE,
                     STATIC_SITE_REPO_DIR)
-      
-      print("\nPublished portfolio, license & README to GitHub pages repo.")
+
+        print("\nPublished portfolio, license & README to GitHub pages repo.")
     except:
-       print("Sorry, the license and/or README file does not exist.")
-    
+        print("Sorry, the license and/or README file does not exist.")
+
 else:
     print("\nPublished portfolio to GitHub pages repo.")
 
