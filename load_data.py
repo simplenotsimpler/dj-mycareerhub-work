@@ -17,12 +17,12 @@
 '''
 
 
-from django.core.management import call_command
-
 # Source - https://stackoverflow.com/questions/15556499/django-db-settings-improperly-configured-error
 # Posted by MagTun, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-12-13, License - CC BY-SA 4.0
 
+from django.core.management import call_command
+import shutil
 import django
 import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
@@ -45,6 +45,16 @@ def load_resumes_sample_data():
     call_command("loaddata", "sample_data_1_resumes.json")
 
 
+def load_portfolio_sample_media():
+    print("creating media folder & copying sample media")
+    # if not os.path.exists("media"):
+    #     os.mkdir("media")
+    shutil.copytree("sample_media", "media")
+
+    # else:
+    # print("Media folder already exists")
+
+
 def load_portfolio_sample_data():
     print("loading portfolio sample data...")
     call_command("loaddata", "sample_data_2_portfolio.json")
@@ -65,8 +75,9 @@ menu = {
     "A": {"description": "Load lookup tables", "action": load_lookup_tables},
     "B": {"description": "Load core sample data", "action": load_core_sample_data},
     "C": {"description": "Load resumes sample data", "action": load_resumes_sample_data},
-    "D": {"description": "Load portfolio sample data", "action": load_portfolio_sample_data},
-    "E": {"description": "Load all of the above", "action": load_all},
+    "D": {"description": "Load portfolio sample media", "action": load_portfolio_sample_media},
+    "E": {"description": "Load portfolio sample data", "action": load_portfolio_sample_data},
+    "F": {"description": "Load all of the above", "action": load_all},
     "Q": {"description": "quit", "action": None}
 }
 
