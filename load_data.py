@@ -21,10 +21,10 @@
 # Posted by MagTun, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-12-13, License - CC BY-SA 4.0
 
+import os
+import django
 from django.core.management import call_command
 import shutil
-import django
-import os
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
 django.setup()
 
@@ -46,13 +46,9 @@ def load_resumes_sample_data():
 
 
 def load_portfolio_sample_media():
-    print("creating media folder & copying sample media")
-    # if not os.path.exists("media"):
-    #     os.mkdir("media")
-    shutil.copytree("sample_media", "media")
-
-    # else:
-    # print("Media folder already exists")
+    # creates the media folder (if needed), continues if directory exists, and overwrites files. this is okay since this is for sample data.
+    print("creating media folder (if needed) & copying sample media")
+    shutil.copytree("sample_media", "media", dirs_exist_ok=True)
 
 
 def load_portfolio_sample_data():
