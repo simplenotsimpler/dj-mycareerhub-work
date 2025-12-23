@@ -60,6 +60,7 @@ def load_all():
     load_lookup_tables()
     load_core_sample_data()
     load_resumes_sample_data()
+    load_portfolio_sample_media()
     load_portfolio_sample_data()
 
 
