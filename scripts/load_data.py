@@ -21,18 +21,18 @@
 # Posted by MagTun, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-12-13, License - CC BY-SA 4.0
 
-import os
-import django
-from django.core.management import call_command
-import shutil
-import sys
-
 # Source - https://stackoverflow.com/questions/62461013/using-django-settings-module-in-a-script-in-subfolder
 # Posted by revliscano, modified by community. See post 'Timeline' for change history
 # Retrieved 2025-12-23, License - CC BY-SA 4.0
 """Yes, the problem arose when you changed the script location because then the root directory was not in the sys.path list anymore. You just need to append the root directory to the aforementioned list in order to be able to load the settings.py file of your project. 
 
 If you have the script now in myrepo/useful_tools/import_filenames/populator.py, then you will need to go back three folders down in your folders tree to be back in your root directory. For this purpose, we can do a couple of tricks using the os module. """
+
+import os
+import django
+from django.core.management import call_command
+import shutil
+import sys
 
 sys.path.append(os.path.abspath(os.path.join(__file__, *[os.pardir] * 2)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
