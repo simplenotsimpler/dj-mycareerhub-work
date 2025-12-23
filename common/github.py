@@ -60,6 +60,7 @@ def get_projects():
             url, json=gh_query, headers=headers, timeout=3)
         response.raise_for_status()
     except requests.RequestException as e:
+        # TODO friendlier way handle this error? Maybe just log & return unable to fetch projects from GitHub?
         raise RuntimeError(f"GitHub API request failed: {e}")
 
     try:
