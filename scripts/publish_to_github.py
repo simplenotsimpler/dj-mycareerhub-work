@@ -10,10 +10,15 @@ import os
 import sys
 import shutil
 
+# check that virtual environment activated before try import Django
+if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
+    print("Inside venv")
+else:
+    print("Not in venv")
+
 import django
 from django.conf import settings
 from django.core.management import call_command
-
 
 sys.path.append(os.path.abspath(os.path.join(__file__, *[os.pardir] * 2)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
