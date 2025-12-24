@@ -6,14 +6,14 @@ Details: Publishes to top level <user>.github.io or <organization>.github.io sit
 -- Set your DISTILL_DIR to the docs folder of this site, e.g. <user>.github.io/docs, so you do not overwrite the .git folder and other files in the repo. 
 -- Set your publishing source to the branch option & select the /docs folder.
 """
-
+import os
+import sys
 import shutil
+
+import django
 from django.conf import settings
 from django.core.management import call_command
 
-import django
-import os
-import sys
 
 sys.path.append(os.path.abspath(os.path.join(__file__, *[os.pardir] * 2)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
