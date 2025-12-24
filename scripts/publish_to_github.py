@@ -6,41 +6,31 @@ Details: Publishes to top level <user>.github.io or <organization>.github.io sit
 -- Set your DISTILL_DIR to the docs folder of this site, e.g. <user>.github.io/docs, so you do not overwrite the .git folder and other files in the repo.
 -- Set your publishing source to the branch option & select the /docs folder.
 """
-from django.core.management import call_command
-from django.conf import settings
-import django
+
 import os
 import sys
 import shutil
 
 # check that virtual environment activated before try import Django
-
-
-def in_venv():
-    return sys.prefix != sys.base_prefix
-
-
-# if not in_venv:
-#     print("Activate virtual env before proceeding")
-# else:
-
+"""
+  Sources:
+  https://www.geeksforgeeks.org/python/determining-if-python-is-running-in-a-virtualenv/
+  https://stackoverflow.com/questions/1871549/how-to-determine-if-python-is-running-inside-a-virtualenv
+  https://allanderek.github.io/posts/import-placement/
+  https://www.codecademy.com/article/python-exit-commands-quit-exit-sys-exit-os-exit-and-keyboard-shortcuts
+"""
 if sys.base_prefix != sys.prefix:
-    print("inside venv")
+    from django.core.management import call_command
+    from django.conf import settings
+    import django
 else:
-    print("not in venv")
-
-
-# if hasattr(sys, 'real_prefix') or (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix):
-#     print("Inside venv")
-# else:
-#     print("Not in venv")
+    print("Virtual env not activated. Please activate before running.\nQuiting...")
+    quit()
 
 
 sys.path.append(os.path.abspath(os.path.join(__file__, *[os.pardir] * 2)))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "mch_site.settings")
 django.setup()
-
-# TODO test at home when can use GitHub API
 
 # get the output dir from settings
 OUTPUT_DIR = getattr(settings, 'DISTILL_DIR', None)
